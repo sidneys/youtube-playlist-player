@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+
+<!-- Styles (Third Party) -->
+<link rel="stylesheet" type="text/css" href="./photon/photon.css">
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="./styles/styles.css">
+<body id="body">
+
+    <!-- Window -->
+    <div class="window">
+
+        <!-- Header -->
+        <header class="toolbar toolbar-header" id="header">
+
+            <!-- Title -->
+            <h1 class="title" id="title">Header with actions</h1>
+
+            <!-- Toolbar -->
+            <div class="toolbar-actions" id="toolbar">
+
+                <!-- Left -->
+                <div class="btn-group">
+                    <button class="btn btn-default" id="button-video">
+                        <span class="icon icon-video"></span>
+                    </button>
+                    <button class="btn btn-default" id="button-monitor">
+                        <span class="icon icon-monitor"></span>
+                    </button>
+                </div>
+
+                <!-- Right -->
+                <button class="btn btn-default pull-right" id="button-reload">
+                    <span class="icon icon-arrows-ccw"></span>
+                </button>
+                <button class="btn btn-default pull-right" id="button-right">
+                    <span class="icon icon-right-dir"></span>
+                </button>
+                <button class="btn btn-default pull-right" id="button-left">
+                    <span class="icon icon-left-dir"></span>
+                </button>
+
+            </div>
+        </header>
+
+        <!-- Webview -->
+        <webview id="webview"
+                 src="https://youtube.com/tv"
+                 autosize="on"
+                 disablewebsecurity="on"
+                 allowpopups="on">
+        </webview>
+
+    </div>
+
+    <!-- Scripts (Third Party) -->
+    <script src="./photon/photon.js"></script>
+
+    <!-- Scripts -->
+    <script src="./scripts/webview.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+{
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "plugins": [
+        "jsdoc", "lodash", "html", "json", "markdown", "node"
+    ],
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "globals": {
+        "global": false,
+        "chrome": false
+    },
+    "rules": {
+        "no-console":0,
+        "no-bitwise": 2,
+        "camelcase": 0,
+        "curly": 2,
+        "eqeqeq": 2,
+        "wrap-iife": 0,
+        "indent": [
+            2, 4, {
+                "SwitchCase": 1
+            }
+        ],
+        "no-use-before-define": ["error", { "functions": true, "classes": true }],
+        "no-caller": 2,
+        "quotes": [
+            2, "single"
+        ],
+        "no-undef": 2,
+        "no-unused-vars": 2,
+        "strict": [
+            2, "function"
+        ],
+        "dot-notation": 0,
+        "no-with": 2,
+        "no-mixed-spaces-and-tabs": 2,
+        "no-multi-str": 2,
+        "key-spacing": [
+            2, {
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ],
+        "space-unary-ops": [
+            2, {
+                "words": false,
+                "nonwords": false
+            }
+        ],
+        "space-before-function-paren": [
+            2, {
+                "anonymous": "ignore",
+                "named": "never"
+            }
+        ],
+        "space-in-parens": [
+            2, "never"
+        ],
+        "comma-dangle": [
+            2, "never"
+        ],
+        "no-trailing-spaces": 2,
+        "comma-style": [
+            2, "last"
+        ],
+        "eol-last": 2,
+        "space-infix-ops": 2,
+        "keyword-spacing": [
+            2, { }
+        ],
+        "space-before-blocks": [
+            2, "always"
+        ],
+        "linebreak-style": [
+            2, "unix"
+        ],
+        "valid-jsdoc": 2
+    }
+}
