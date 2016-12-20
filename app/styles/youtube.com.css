@@ -1,0 +1,1462 @@
+/* Start Theme options */
+
+/*Larger player*/
+.ytp-chrome-controls {
+    /* Decrease control size*/
+    height: 30px !important;
+    line-height: 30px !important;
+    Display: block !important;
+}
+
+.watch-stage-mode .player-height {
+    height: 600px !important;
+}
+
+.watch-stage-mode .player-width {
+    width: 1066px !important;
+    left: -533px !important;
+}
+
+.watch-stage-mode .video-stream {
+    width: 1066px !important;
+    height: 600px !important;
+    margin-top: 0 !important;
+}
+
+.ytp-fullscreen .html5-video-container {
+    height: 100% !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.ytp-fullscreen .html5-video-container .video-stream {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.watch-stage-mode .video-stream {
+    left: 0 !important;
+    top: 0 !important;
+}
+
+.watch-stage-mode .watch7-playlist-bar {
+    width: 1066px !important;
+}
+
+.watch-stage-mode .watch7-playlist-bar-left {
+    width: 740px !important;
+}
+
+.watch-stage-mode #watch7-playlist-tray-container {
+    left: 740px !important;
+}
+
+.watch-playlist-collapsed #watch7-playlist-tray-container {
+    height: 0 !important;
+}
+
+.player-api {
+    background: transparent !important;
+}
+
+#placeholder-player {
+    margin-top: -5px !important;
+}
+
+#player,
+.watch-stage-mode #placeholder-player {
+    margin-top: -5px !important;
+}
+
+#theater-background {
+    height: 615px !important;
+    margin-top: 0 !important;
+}
+
+.watch-large #theater-background {
+    height: 760px !important;
+    margin-top: -10px !important;
+}
+
+/*playlist*/
+/*tables aligned with the theater mode player*/
+.watch-stage-mode #content[class="  content-alignment"] {
+    width: 1066px !important;
+    min-width: 1066px !important;
+    max-width: 1066px !important;
+}
+
+.watch-stage-mode #watch7-container {
+    width: 1066px !important;
+    min-width: 1066px !important;
+    max-width: 1066px !important;
+}
+
+.watch-stage-mode #watch7-sidebar {
+    margin-left: 650px !important;
+}
+
+.watch-stage-mode #watch7-content {
+    width: 640px !important;
+}
+
+.watch-stage-mode #player-playlist {
+    width: 1066px !important;
+}
+
+.watch-stage-mode #watch-appbar-playlist {
+    position: absolute !important;
+    width: 416px !important;
+    height: 420px !important;
+    left: 650px !important;
+    top: 245px !important;
+}
+
+#watch7-content .yt-card {
+    margin: 5px 0 !important;
+}
+
+#watch7-sidebar-contents {
+    margin-top: 5px !important;
+    padding-left: 5px !important;
+}
+
+#watch7-content .yt-card {
+    margin: 5px 0 !important;
+}
+
+.watch-wide #watch-header,
+#watch7-sidebar-discussion.yt-card {
+    margin-top: 5px !important;
+}
+
+.watch-wide #watch7-sidebar,
+.watch-wide #watch7-preview {
+    margin-top: 4px !important;
+}
+
+.howto-promo-container {
+    min-height: 200px;
+    background-image: none !important;
+}
+
+/* Like/Dislike Color */
+/* Like/Dislike bar */
+.video-extras-sparkbar-dislikes {
+    background: #a84646 !important;
+}
+
+.video-extras-sparkbar-likes {
+    background: #46a852 !important;
+}
+
+/* Like/Dislike Icon Images */
+.like-button-renderer-like-button.yt-uix-button:active:before, .like-button-renderer-like-button.yt-uix-button.yt-uix-button-toggled:before {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -170px -212px !important
+}
+
+.like-button-renderer-dislike-button:before {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -70px -258px !important;
+}
+
+.like-button-renderer-like-button:before {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -170px -212px !important
+}
+
+.like-button-renderer-dislike-button:before, .like-button-renderer-like-button:before {
+    opacity: 0.3 !important;
+}
+
+.like-button-renderer-dislike-button:hover::before, .like-button-renderer-like-button:hover::before {
+    opacity: 0.7 !important;
+}
+
+/* Player Colors */
+/* Player colors, seekbar, icon, volume, etc. */
+/* Credits to Userstyles user TokHaar */
+.ytp-settings-button.ytp-hd-quality-badge::after, .ytp-settings-button.ytp-4k-quality-badge::after, .ytp-settings-button.ytp-5k-quality-badge::after, .ytp-settings-button.ytp-8k-quality-badge::after, .ytp-settings-button.ytp-3d-badge::after {
+    background-color: #6363a1 !important;
+}
+
+.html5-scrubber-button:hover, .ytp-scrubber-button:hover, .ytp-swatch-background-color, .ytp-swatch-background-color-secondary {
+    background: #6363a1 !important;
+}
+
+.ytp-swatch-color {
+    color: #6363a1 !important;
+}
+
+.html5-play-progress, .ytp-play-progress {
+    background: #6363a1 !important;
+}
+
+.ytp-volume-slider-track, .ytp-volume-slider-handle:before {
+    background: #6363a1 !important;
+    z-index: -117;
+}
+
+.ytp-chrome-controls .ytp-button.ytp-youtube-button:hover:not([aria-disabled="true"]):not([disabled]) .ytp-svg-fill-logo-tube-lozenge {
+    fill: #6363a1 !important;
+}
+
+.ytp-menuitem[aria-checked="true"] .ytp-menuitem-toggle-checkbox {
+    background: #6363a1 !important;
+}
+
+/* Link Colors */
+/* Sidebar Video Link Hover */
+.video-list .video-list-item .title:hover {
+    color: #167ac6 !important;
+}
+
+/* End Theme options */
+
+/* Theme color */
+/* ---------------------------------------------- */
+/* -----            Theme Css               ----- */
+/* -----              Night                 ----- */
+/* ---------------------------------------------- */
+
+/* Replace YouTube logo on small window,
+original image has white edges */
+
+@media only screen and (max-width: 498px) and (min-width: 0px), only screen and (max-width: 704px) and (min-width: 499px) {
+    .exp-responsive #yt-masthead #logo-container {
+        background: no-repeat url(http://i.imgur.com/mRon4QY.png) !important;
+        background-size: auto !important;
+        width: 40px !important;
+        height: 28px !important;
+    }
+
+    #yt-masthead #logo-container span.content-region {
+        display: none !important;
+    }
+}
+
+/* Logo */
+#masthead-logo img, #yt-masthead #logo-container .logo, .footer-logo img, #footer-logo .footer-logo-icon, span.fg-eh-hj.a-b-c.fg-ph-Qc-Wd {
+    background: url(http://i.imgur.com/cOlfpSF.png) 0 no-repeat !important;
+    background-size: contain !important
+}
+
+/* Scrollbar Chrome*/
+*::-webkit-scrollbar {
+    width: 8px ! important;
+    height: 10px ! important;
+    background: #1e1e1e ! important;
+    border: 1px solid #252525 ! important;
+}
+
+*::-webkit-scrollbar-button {
+    display: none ! important;
+}
+
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-track {
+    border: 0 ! important;
+    box-shadow: none ! important;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #333333 ! important;
+}
+
+*::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-track {
+    background: #1e1e1e ! important;
+}
+
+/*spinner replacement*/
+.ISc,
+.Pu5TY,
+.RWdWXd,
+.Tzc,
+.yt-spinner-img {
+    -webkit-animation: scaleout 1s infinite ease-in
+}
+
+@-webkit-keyframes scaleout {
+    0% {
+        -webkit-transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 0
+    }
+}
+
+@keyframes scaleout {
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0)
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes scaleout {
+    0% {
+        -webkit-transform: scale(0.0)
+    }
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes scaleout {
+    0% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    100% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+.yt-spinner-img, .ISc.Tzc, .Tzc, .ISc, .RWdWXd {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    background: red none !important;
+    border-radius: 100%;
+    -webkit-animation: scaleout 1.0s infinite ease-in;
+    animation: scaleout 1.0s infinite ease-in;
+}
+
+/* -------- Start General Things -------- */
+#page-container, body > #body-container, body {
+    background: #222125 !important;
+}
+
+input {
+    background: #201f24 !important;
+    color: #777777 !important;
+    border-color: #333333 !important;
+}
+
+.yt-thumb {
+    background: #2d2e33 !important;
+}
+
+/* Drop Down Menu Buttons */
+.yt-uix-button-menu .yt-uix-button-menu-item {
+    color: #777777 !important;
+}
+
+/* -------- Start Header/Masthead -------- */
+#yt-masthead-container {
+    background: #1c1d22 !important;
+    border-color: #2b2d36 !important;
+}
+
+#yt-masthead-user .yt-uix-button-icon-bell, #yt-masthead-user #sb-button-notify {
+    background-color: #1c1d22 !important;
+}
+
+#yt-masthead-user .yt-uix-button-icon-bell {
+    -webkit-filter: invert(0.5) !important;
+    -moz-filter: invert(0.5) !important;
+    filter: invert(0.5) !important;
+    background: no-repeat url(http://i.imgur.com/m0WLNZ1.png) -698px -257px !important;
+}
+
+#masthead-search-terms, #masthead-search-terms #gs_tti50 {
+    background: #201f24 !important;
+}
+
+.masthead-search-terms-border {
+    border-color: #333333 !important;
+    box-shadow: none !important;
+}
+
+/* Dropdown suggestions */
+.gssb_m {
+    color: #999999 !important;
+    background: #2d2e33 !important;
+}
+
+.gssb_e {
+    border: 1px solid #333333 !important;
+    border-top-color: #222222 !important;
+}
+
+.gssb_i td {
+    background: #33343a !important;
+}
+
+/* Google+ Bell Notification */
+#yt-masthead-user .sb-notif-on .yt-uix-button-content {
+    background: #5c5edc !important;
+    border-color: #333333 !important;
+    color: #eeeeee !important;
+}
+
+/* Profile Box/G+ */
+.yt-masthead-picker-footer {
+    background: #27252b !important;
+}
+
+.yt-uix-clickcard-card-border {
+    background: #2d2e33 !important;
+    border-color: #333333 !important;
+}
+
+a.yt-masthead-picker-active-account, .yt-masthead-account-picker.yt-uix-clickcard-card-content {
+    color: #888888 !important;
+}
+
+/* Notification */
+.appbar-guide-notification {
+    border-color: #333333 !important;
+    background-color: #5c5edc !important;
+    color: #bbbbbb !important;
+}
+
+/* -------- Start Footer -------- */
+body #footer-container {
+    background: #1c1d22 !important;
+    border-color: #2b2d36 !important;
+}
+
+#footer-main {
+    border-bottom-color: #333333 !important;
+}
+
+/* Footer Country Seperator */
+.yt-picker-hr,
+    /* Restricted Mode */
+#safety-form p.safety-submit {
+    border-color: #333333 !important;
+}
+
+/* History Header */
+.feed-header {
+    border-color: #333333 !important;
+}
+
+/* Language picker */
+#yt-picker-country-footer, #yt-picker-language-footer, #yt-picker-safetymode-footer {
+    background: #1c1d22 !important;
+}
+
+.yt-picker-header {
+    border-color: #333333 !important;
+}
+
+#footer .yt-picker > .yt-default h1, .yt-default h2, .yt-default h3, .yt-default h4, .yt-default h5, .yt-default h6, h1.yt, h2.yt, h3.yt, h4.yt, h5.yt, h6.yt, #footer .yt-picker > .yt-picker-content strong {
+    color: #777777 !important;
+}
+
+/* -------- Start app bar --------- */
+#appbar-guide-menu, .guide-flyout {
+    background-color: #1c1d22 !important;
+    border-right: 1px solid #333333 !important;
+}
+
+.guide-item {
+    color: #777777 !important;
+}
+
+.guide-flyout-trigger.on-hover, .guide-item:hover, .guide-item:hover .yt-deemphasized-text, .guide-collapsible-item .yt-uix-expander-head:hover, .guide-item.guide-item-selected, .guide-item.guide-item-selected:hover, .guide-item.guide-item-selected .yt-deemphasized-text, .guide-item.guide-item-selected:hover .yt-deemphasized-text {
+    color: #999999 !important;
+    background: #2d2e33 !important;
+}
+
+.guide-section-separator {
+    border-color: #2b2d36 !important;
+}
+
+li.guide-section h3 a {
+    color: #5c5edc !important;
+}
+
+.yt-uix-button-toggled, .epic-nav-item:hover, .epic-nav-item.selected, .epic-nav-item.yt-uix-button-toggled, .epic-nav-item-heading, a.yt-uix-button-epic-nav-item:hover, a.yt-uix-button-epic-nav-item.selected, a.yt-uix-button-epic-nav-item.yt-uix-button-toggled {
+    border-color: #5c5edc;
+    border-bottom: 3px solid !important;
+}
+
+#masthead-appbar {
+    background-color: #1c1d22 !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+a.yt-uix-button-epic-nav-item.selected, a.yt-uix-button-epic-nav-item.yt-uix-button-toggled, button.yt-uix-button-epic-nav-item.selected, button.yt-uix-button-epic-nav-item.yt-uix-button-toggled, .epic-nav-item.selected, .epic-nav-item.yt-uix-button-toggled, .epic-nav-item-heading {
+    color: #999999 !important;
+}
+
+/* -------- Start Main Page ------- */
+.yt-ui-ellipsis {
+    background-color: transparent !important;
+}
+
+#browse-items-primary .item-section > li > .yt-lockup-tile, .branded-page-v2-primary-col .branded-page-box, .section-list li .item-section .branded-page-box {
+    margin: 4px !important;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.branded-page-module-title-text {
+    color: #999999 !important;
+}
+
+.yt-uix-button-icon-dismissal {
+    -webkit-filter: invert(0.8) !important;
+    -moz-filter: invert(0.8) !important;
+    filter: invert(0.8) !important;
+    background: url("http://i.imgur.com/ninWgI1.png") -285px -166px / 419px 399px no-repeat !important;
+}
+
+.compact-shelf .yt-uix-button-shelf-slider-pager {
+    background-color: #2d2e33 !important;
+}
+
+.compact-shelf .yt-uix-button-shelf-slider-pager {
+    border-color: #333333 !important;
+}
+
+.compact-shelf .yt-uix-shelfslider-next-arrow, .rtl .compact-shelf .yt-uix-shelfslider-prev-arrow {
+    -webkit-filter: invert(0.8) !important;
+    -moz-filter: invert(0.8) !important;
+    filter: invert(0.8) !important;
+    background: url("http://i.imgur.com/ninWgI1.png") -85px -262px / 419px 399px no-repeat !important;
+}
+
+/* -------- Start Video/Watch page -------- */
+.watch-stage-mode #theater-background {
+    background-color: #222125 !important;
+}
+
+/* Like/Dislike stuff */
+.like-button-renderer-dislike-button.yt-uix-button:active:before, .like-button-renderer-dislike-button.yt-uix-button.yt-uix-button-toggled:before, .like-button-renderer-like-button.yt-uix-button:active:before, .like-button-renderer-like-button.yt-uix-button.yt-uix-button-toggled:before {
+    opacity: 0.7 !important;
+}
+
+.like-button-renderer-like-button:active .yt-uix-button-content, .like-button-renderer-like-button.yt-uix-button-toggled .yt-uix-button-content {
+    color: #767676 !important;
+}
+
+/* Majority of divs */
+.yt-card {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 2px transparent !important;
+    box-shadow: none !important;
+}
+
+/* Video Option buttons border*/
+#watch8-action-buttons {
+    border-top-color: #262626 !important;
+}
+
+/* Video Description Show More */
+.yt-card .yt-uix-button-expander {
+    color: #818181 !important;
+    border-top-color: #262626 !important;
+}
+
+/* Video option buttons, add to, share, etc */
+#watch8-action-buttons .yt-uix-button, #watch8-action-buttons .yt-uix-button:hover, #action-panel-dismiss, #action-panel-dismiss:hover {
+    color: #767676 ! important;
+}
+
+.yt-uix-button-default:before,
+.c4-editor-plus:before,
+.addto-button:before,
+.action-panel-trigger-share:before,
+#action-panel-overflow-button:before,
+.action-panel-trigger-overflow:before,
+.play-all-icon-btn:before {
+    -webkit-filter: invert(0.7) !important;
+    -moz-filter: invert(0.7) !important;
+    filter: invert(0.7) !important;
+}
+
+/* Share Options */
+.yt-card .yt-uix-tabs {
+    border-bottom-color: #262626 !important;
+}
+
+.yt-uix-form-input-radio-element, .yt-uix-form-input-checkbox-element {
+    border-color: #363636 !important;
+}
+
+.share-panel, .yt-uix-button-text, .yt-uix-button-text[disabled], .share-panel-url {
+    color: #777777 !important;
+}
+
+/* Video Title */
+span#eow-title.watch-title {
+    color: #c7cbcd !important;
+}
+
+/* Video Comments */
+.comments .comment-text .comment-text-content, .comment-renderer-text-content,
+    /* Video Description */
+#watch-description,
+    /* Uploader Username */
+#watch-header .yt-user-info a {
+    color: #818181 !important;
+}
+
+/* Video Description Link */
+.yt-uix-sessionlink .hoverZoomLink {
+    color: #555555 !important;
+}
+
+/* Video Comment input box */
+.comment-simplebox-renderer-collapsed-content {
+    border-color: #333333 !important;
+    color: #818181 !important;
+}
+
+/* Border, bottom */
+.comment-simplebox-renderer {
+    border-bottom-color: #262626 !important;
+}
+
+/* Activated Comment input box */
+.comment-simplebox {
+    background: #201f24 !important;
+}
+
+.comment-simplebox-frame {
+    border-color: #333333 !important;
+    box-shadow: none !important;
+}
+
+.comment-simplebox-text, .comment-simplebox-prompt {
+    background-color: #201f24 !important;
+    color: #999999 !important;
+}
+
+/* Video Comment input box arrow */
+.comment-simplebox-arrow .arrow-inner,
+.comment-simplebox-arrow .arrow-outer {
+    display: none !important;
+}
+
+/* Uploader Comment */
+.comment-renderer.channel-owner .comment-author-text {
+    border-bottom: 2px solid #494554 !important;
+    color: #aaaaaa !important;
+    background: none !important;
+}
+
+/* Show More comment */
+span.load-more-text {
+    color: #555555 !important;
+}
+
+/* Sort list, Comments */
+.yt-uix-button-default:active, .yt-uix-button-default.yt-uix-button-toggled, .yt-uix-button-default.yt-uix-button-active, .yt-uix-button-default.yt-uix-button-active:focus, .yt-uix-button-text:active {
+    border-color: #333333 !important;
+    background: #1c1d22 !important;
+    box-shadow: none !important;
+}
+
+/* Video Sidebar */
+/* Separating border */
+#watch7-sidebar .watch-sidebar-separation-line {
+    border-bottom-color: #262626 !important;
+}
+
+/* Video titles */
+.video-list .video-list-item .title {
+    color: #818181 !important;
+}
+
+/* "New" caption box */
+.yt-badge {
+    border-color: #262626 !important;
+    color: #666666 !important;
+}
+
+/* Autoplay switch */
+.yt-uix-checkbox-on-off input[type=checkbox]:checked + label {
+    background-color: #5c5edc !important;
+}
+
+.yt-uix-checkbox-on-off label {
+    background: #2a2a2a !important;
+}
+
+.yt-uix-checkbox-on-off .toggle {
+    background: #747474 !important;
+}
+
+/*Playlist sidebar*/
+#watch-appbar-playlist .playlist-header, #player-playlist .playlist-videos-list {
+    background-color: #27252b !important;
+}
+
+#player-playlist :not(.watch-queue-nav) .playlist-videos-list > li.currently-playing {
+    background-color: #2d2e33 !important;
+}
+
+#player-playlist .playlist-videos-list > li:hover {
+    background-color: #33343a !important;
+}
+
+#watch7-sidebar .watch-sidebar-head {
+    color: #4b4b4b !important;
+}
+
+/* Info Icon*/
+.autoplay-bar .autoplay-info-icon {
+    -webkit-filter: invert(0.3) !important;
+    -moz-filter: invert(0.3) !important;
+    filter: invert(0.3) !important;
+}
+
+/* Subscribe Button */
+.yt-subscription-button-subscriber-count-branded-horizontal, .yt-subscription-button-subscriber-count-unbranded-horizontal {
+    border: 1px solid #333333 !important;
+    background-color: #222125 !important;
+}
+
+.yt-uix-button-subscribe-branded, .yt-uix-button-subscribe-branded[disabled], .yt-uix-button-subscribe-branded[disabled]:hover, .yt-uix-button-subscribe-branded[disabled]:active, .yt-uix-button-subscribe-branded[disabled]:focus {
+    color: #eeeeee !important;
+    background-color: #5c5edc !important;
+}
+
+.yt-uix-button-subscribe-branded:before {
+    background: no-repeat url(http://i.imgur.com/m0WLNZ1.png) -532px 0 !important;
+    background-size: auto !important;
+    width: 16px !important;
+    height: 12px !important;
+    -webkit-filter: invert(0.7) !important;
+    -moz-filter: invert(0.7) !important;
+    filter: invert(0.7) !important;
+}
+
+.yt-uix-button-subscribed-branded, .yt-uix-button-subscribed-branded[disabled], .yt-uix-button-subscribed-branded[disabled]:hover, .yt-uix-button-subscribed-branded[disabled]:active, .yt-uix-button-subscribed-branded[disabled]:focus, .yt-uix-button-subscribed-unbranded, .yt-uix-button-subscribed-unbranded[disabled], .yt-uix-button-subscribed-unbranded[disabled]:hover, .yt-uix-button-subscribed-unbranded[disabled]:active, .yt-uix-button-subscribed-unbranded[disabled]:focus,
+.yt-uix-button-default, .yt-uix-button-default[disabled], .yt-uix-button-default[disabled]:hover, .yt-uix-button-default[disabled]:active, .yt-uix-button-default[disabled]:focus {
+    border-color: #333333 !important;
+    background-color: #222125 !important;
+    color: #aaaaaa !important;
+}
+
+/* Like/Dislike comment button */
+#comment-section-renderer .comment-renderer-footer .sprite-like-dislike {
+    background: #1c1d22 !important;
+}
+
+/* Show more comments button */
+.comment-section-renderer-paginator {
+    border-color: #333333 !important;
+    color: #818181 !important;
+    background: #1c1d22 none !important;
+}
+
+/* ------- Start Playlist Pages/Profile Pages -------- */
+/* Playlist stuff */
+.pl-video {
+
+}
+
+.pl-video-title-link {
+    color: #777777 !important;
+}
+
+#pl-header .privacy-icon-present .pl-header-details::before {
+    border-left-color: #333333 !important;
+}
+
+.pl-header-privacy-only-me {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -596px -129px !important;
+}
+
+a.yt-uix-button-epic-nav-item.partially-selected {
+    border-color: #5c5edc !important;
+}
+
+.yt-uix-button-icon-settings-material {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -419px -251px !important;
+}
+
+.pl-video-list-editable .pl-video:hover .pl-video-handle, .yt-uix-dragdrop-cursor-follower .pl-video-handle {
+    background: #2d2e33;
+    border-left-color: #2d2e33 !important;
+    border-right-color: #2d2e33 !important;
+}
+
+#playlist-settings-editor .yt-dialog-footer {
+    border-top-color: #333333 !important;
+    background-color: #2d2e33 !important;
+}
+
+.yt-dialog-fg-content .yt-dialog-title, .yt-uix-overlay-fg-content .yt-dialog-title {
+    color: #777777 !important;
+}
+
+/* More menu in playlist */
+.yt-dialog-bg, .yt-uix-overlay-bg, .yt-uix-menu-content.yt-ui-menu-content.yt-uix-kbd-nav > button:hover, .yt-uix-menu-trigger-selected .yt-ui-menu-item, .yt-ui-menu-item:hover {
+    background-color: #33343a !important;
+}
+
+.yt-uix-menu-content.yt-ui-menu-content.yt-uix-kbd-nav > button {
+    background: none !important;
+}
+
+.add-to-widget .addto-playlist-item {
+    color: #777777 !important;
+}
+
+.add-to-widget .addto-playlist-item:hover, .add-to-widget .create-playlist-item:hover, .add-to-widget.create-playlist-item:hover, add-to-widget .addto-playlist-item.yt-uix-kbd-nav-highlight {
+    background-color: #33343a !important;
+    color: #888888 !important;
+}
+
+/* Playlist Checkboxes */
+.add-to-widget .playlist-status, .add-to-widget .contains-all-selected-videos.to-be-removed .playlist-status, .add-to-widget .contains-some-selected-videos.to-be-removed .playlist-status {
+    -webkit-filter: invert(.8) !important;
+    -moz-filter: invert(.8) !important;
+    filter: invert(.8) !important;
+    opacity: 1 !important;
+}
+
+.add-to-widget .playlists {
+    border-color: #333333 !important;
+}
+
+.yt-default p, p.yt {
+    color: #888888 !important;
+}
+
+/* Playlist Translator */
+.translation-editor-original-input, .translation-editor-original-input:hover, .translation-editor-original-input:focus, .translation-editor-header .translation-editor-column-half, .translation-editor-header .translation-editor-column-divider, .yt-uix-languagepicker-search-container {
+    border-color: #333333 !important;
+}
+
+textarea.yt-uix-form-input-textarea.translation-editor-original-input.translation-editor-original-description.ng-pristine.ng-valid.ng-touched,
+textarea.yt-uix-form-input-textarea.translation-editor-translated-description.ng-pristine.ng-valid.ng-touched {
+    background-color: #201f24 !important;
+    border-color: #333333 !important;
+}
+
+.translation-editor-column-half > h4, .c4-translation-editor-save-message-container {
+    color: #777777 !important;
+}
+
+.yt-uix-button-menu {
+    background-color: #201f24 !important;
+    border-color: #333333 !important;
+    color: #888888 !important;
+}
+
+/* Playlist Share */
+.yt-uix-hovercard-card-border {
+    background: #201f24 !important;
+    border-color: #333333 !important;
+}
+
+.yt-uix-clickcard-card-reverse .yt-uix-card-body-arrow-vertical, .yt-uix-hovercard-card-reverse .yt-uix-card-body-arrow-vertical, .yt-uix-clickcard-card-reverse .yt-uix-card-border-arrow-vertical, .yt-uix-hovercard-card-reverse .yt-uix-card-border-arrow-vertical {
+    display: none !important;
+}
+
+#collaboration-settings .collaboration-settings-invite-link.disabled::before {
+    background: #2d2e33 !important;
+    color: #777777 !important;
+}
+
+.yt-horizontal-rule {
+    border-color: #333333 !important;
+}
+
+/* Playlist Title */
+#pl-header .pl-header-title {
+    color: #777777 !important;
+}
+
+/* Profile stuff */
+span.view-as-menu-text {
+    color: #555555 !important;
+}
+
+.channel-header .branded-page-header-title .branded-page-header-title-link {
+    color: #888888 !important;
+}
+
+.channel-header .secondary-header-contents {
+    background-color: #201f24 !important;
+    border-bottom-color: #333333 !important;
+}
+
+.secondary-header-contents .nav-text {
+    color: #555555 !important;
+}
+
+#c4-header-bg-container, .branded-page-v2-subnav-container {
+    border-bottom-color: #333333 !important;
+}
+
+.yt-uix-button-icon-channel-back {
+    background: no-repeat url(http://i.imgur.com/m0WLNZ1.png) -478px -183px !important;
+    -webkit-filter: invert(0.7) !important;
+    -moz-filter: invert(0.7) !important;
+    filter: invert(0.7) !important;
+}
+
+.yt-uix-button-icon-privacy-private {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -287px -234px !important;
+}
+
+.about-metadata-label-border-top {
+    border-top: 1px solid #333333 !important;
+}
+
+.c4-checklist-module .todo-title-text, .yt-uix-form-legend, .yt-uix-form-label {
+    color: #555555 !important;
+}
+
+.about-description-editor .c4-module-is-editable:hover, .about-business-email-editor .c4-module-is-editable:hover, .about-metadata-editor .c4-module-is-editable:hover, .c4-module-editor-form {
+    background-color: #2d2e33 !important;
+}
+
+textarea.yt-uix-form-input-textarea.description-textarea, select.yt-uix-form-input-select-element.country-selector-select, span.yt-uix-form-input-select.country-selector {
+    background: #201f24 !important;
+    border-color: #333333 !important;
+    color: #666666 !important;
+    text-shadow: none !important;
+}
+
+#about-business-email-form, .about-metadata-editor-form {
+    border-top-color: #333333 !important;
+}
+
+.c4-module-is-editable .c4-module-editor-actions {
+    -webkit-filter: invert(0.8) !important;
+    -moz-filter: invert(0.8) !important;
+    filter: invert(0.8) !important;
+}
+
+.yt-uix-button-primary, .yt-uix-button-primary[disabled], .yt-uix-button-primary[disabled]:hover, .yt-uix-button-primary[disabled]:active, .yt-uix-button-primary[disabled]:focus {
+    border: none !important;
+    background: #5c5edc !important;
+    color: #eeeeee !important;
+}
+
+.video-unlisted-icon, .video-private-icon {
+    opacity: 0.5 !important;
+}
+
+.yt-ui-menu-item, .yt-ui-menu-item {
+    background: #201f24 !important;
+}
+
+/* Support this channel/Related channels */
+.branded-page-module-title {
+    color: #999999 !important;
+}
+
+.tip-card-message {
+    color: #555555 !important;
+}
+
+.branded-page-related-channels h3 a, .branded-page-related-channels h3 {
+    color: #777777 !important;
+}
+
+.branded-page-related-channels h3 a:hover {
+    color: #1b7ac6 !important;
+}
+
+/* Subscription Manager */
+#subscription-manager-container .subscription-manager-title {
+    color: #777777 !important;
+}
+
+.subscription-table-header {
+    border-top-color: #333333 !important;
+}
+
+.subscriptions-filter .filter-field-container {
+    border-color: #333333 !important;
+    background: none !important;
+    color: #666666 !important;
+}
+
+.yt-dialog-fg, .yt-uix-overlay-fg {
+    background-color: #2d2e33 !important;
+    border-color: #333333 !important;
+    color: #555555 !important;
+}
+
+.yt-dialog-fg-content, .yt-uix-overlay-fg-content, input.yt-uix-form-input-checkbox.receive-all-updates {
+    color: #555555 !important
+}
+
+.yt-uix-overlay-actions {
+    background: #33343a !important
+}
+
+.yt-uix-form-input-checkbox-container input:checked + .yt-uix-form-input-checkbox-element {
+    background: no-repeat url(http://i.imgur.com/m0WLNZ1.png) -326px -281px;
+    -webkit-filter: invert(0.3) !important;
+    -moz-filter: invert(0.3) !important;
+    filter: invert(0.3) !important;
+}
+
+/* ------- Start Live Chat */
+.PNL6KCC-H-b img, .PNL6KCC-Y-t, img[alt="Multi-line chart"], img[alt="Line chart"], img[alt="Stacked area chart"], img[alt="Pie chart"], img[alt="Bar chart"], img[alt="Map"], .PNL6KCC-gb-a, .PNL6KCC-u-a, .PNL6KCC-L-c, .PNL6KCC-n-c, .PNL6KCC-ob-b, .PNL6KCC-R-h, .PNL6KCC-H-i img, .pl-header-privacy-limited-sharing, .action-panel-trigger-transcript:before, .c4-featured-content-editor .question-mark-icon, #console-button, #autoplay-button, #loop-button, #save-thumbnail-button, #screenshot-button, #popout-button, #fullbrowser-button, #cinemamode-button, #framestep-button, .P-impexp, .P-implang, #yt-masthead #P, .vk-t-btn, .yt-uix-button-icon-dashboard-widget-config, .subscription-header .breadcrumb-chevron, .vm-list-view .vm-video-metric.video-dislikes-count .yt-sprite, .vm-list-view .vm-video-metric.video-comments .yt-sprite, .vm-list-view .vm-video-metric.video-likes-count .yt-sprite, .action-panel-trigger-report:before, .action-panel-trigger-stats:before, .live-chat-widget .post-button::before, .compact-shelf .yt-uix-shelfslider-prev-arrow, .rtl .compact-shelf .yt-uix-shelfslider-next-arrow, .compact-shelf .yt-uix-shelfslider-next-arrow, .rtl .compact-shelf .yt-uix-shelfslider-prev-arrow, .vertical-shelf .vertical-shelf-expander:before, .live-chat-widget .live-comments-emoji-picker-open::before, .live-chat-widget .overflow-menu-button:before, .live-chat-overflow-menu .chat-popout-menu:before, .vk-t-btn, .gsok_a, .yt-uix-button-icon-view-module, .yt-uix-button-icon-view-list, .guide-builder-search .search-button .yt-uix-button-content, .fg-Uh-db-ig, img.d-u-x, .pl-header-privacy-everyone, .hhb, .shb, .subscriptions-filter .filter-button .yt-uix-button-content, .yt-uix-button-default:before, .yt-uix-button-default .yt-uix-button-icon, .yt-uix-button-icon-upload-cancel, .comments .sprite_caret.up, .comments .sprite_caret.down, .yt-uix-button-icon-icon-account-settings, .track.attribution .license-button .track-action-icon, .track .play-pause-button.play-visible .track-action-icon, .track:hover .play-pause-button.play-hover .track-action-icon, .track.expanded .play-pause-button.play-hover .track-action-icon, .audio-ui-ad-badge, .yt-uix-button-icon-creator-editor-back, .add-to-widget .contains-all-selected-videos .playlist-status, .add-to-widget .to-be-added .playlist-status, .add-to-widget .private-icon, .add-to-widget .public-icon, .add-to-widget .addto-search-playlist-section .search-icon, .guidelines .yt-uix-expander .yt-uix-expander-arrow, .yt-help-icon, .yt-uix-button-icon-settings, .pl-header-privacy-only-me, .create-playlist-widget-form .yt-uix-button-has-icon[data-privacy-state=privacy-private]:before, .create-playlist-widget-form .yt-uix-button-has-icon[data-privacy-state=privacy-public]:before, .create-playlist-widget-form .yt-uix-button-has-icon[data-privacy-state=privacy-unlisted]:before, .c4-editor-plus:before, #creator-sidebar .studio-icon.creator-sidebar-live-streaming, .yt-uix-button-icon-vm-beauty-view, .yt-uix-button-icon-vm-list-view, .vm-search-btn .yt-uix-button-content, .Sgb, .create-playlist-widget-button .add-new-pl-btn:before, #watch7-subscription-container .channel-settings-link:before, .searchfield .search-icon, .sprite_send_message, .yt-uix-button-icon-sprite_send_message, .ytch-search-container .search-btn-component .yt-uix-button-content, #channel-search .show-search .search-icon, #footer .yt-uix-button-icon-footer-language, #footer .yt-uix-button-icon-footer-history, #footer .yt-uix-button-icon-questionmark, .yt-uix-menu.actions-menu, .live-chat-widget .chat-popout-menu:before, #moderator-actions-menu .chat-popout-menu:before, .live-comments-emoji-type-button.emoji_people, .live-comments-emoji-type-button.emoji_flora, .live-comments-emoji-type-button.emoji_things, .live-comments-emoji-type-button.emoji_transportation, .live-comments-emoji-type-button.emoji_symbols, .xN .d-y-r-c-Qa, .ena, .MJa, .LJa, .Ygb, .gr, .iI, .khb, .Qgb, .vKFgJc, .autoplay-bar .autoplay-info-icon, #masthead-search .search-btn-component .yt-uix-button-content, #yt-masthead-user .yt-uix-button-icon-bell, .addto-button:before, .action-panel-trigger-share:before, #action-panel-overflow-button:before, .action-panel-trigger-overflow:before, .play-all-icon-btn:before {
+    -webkit-filter: invert(1) grayscale(1) !important;
+    -moz-filter: invert(1) grayscale(1) !important;
+    filter: invert(1) grayscale(1) !important;
+}
+
+.live-chat-widget .comment-text, #live-comments-input-field, .live-chat-widget .byline, .comment-section-header-renderer {
+    color: #666666 !important;
+}
+
+.live-chat-widget #comments-scroller {
+    border-color: #1a1a1a !important;
+}
+
+.live-comments-emoji-picker-tab-row {
+    background-color: #201f24 !important;
+}
+
+.live-chat-widget .comment {
+    background-color: #2d2e33 !important;
+}
+
+.live-chat-widget #live-comments-setting-bottom-scroll {
+    color: #ffffff !important;
+    background-color: rgba(71, 71, 71, 0.9) !important;
+}
+
+.live-chat-widget .comment.alternate-row {
+    background-color: #33343a !important;
+}
+
+.live-comments-emoji-type-button.emoji_symbols, .live-comments-emoji-type-button.emoji_people, .live-comments-emoji-type-button.emoji_flora, .live-comments-emoji-type-button.emoji_things, .live-comments-emoji-type-button.emoji_transportation {
+    background-color: #999999 !important;
+}
+
+.live-comments-emoji-type-button.emoji_symbols:active, .live-comments-emoji-type-button.emoji_people:active, .live-comments-emoji-type-button.emoji_flora:active, .live-comments-emoji-type-button.emoji_things:active, .live-comments-emoji-type-button.emoji_transportation:active {
+    -webkit-filter: invert(0.7) !important;
+    -moz-filter: invert(0.7) !important;
+    filter: invert(0.7) !important;
+}
+
+.yt-ui-menu-content {
+    background: #201f24 !important;
+    border-color: #333333 !important;
+}
+
+.yt-uix-menu-trigger-selected .yt-ui-menu-item, .yt-ui-menu-item:hover {
+    background: #33343a !important;
+}
+
+.yt-ui-menu-item {
+    color: #666666 !important;
+}
+
+.live-chat-overflow-menu > button {
+    background: #201f24 !important;
+}
+
+.live-chat-widget #live-comments-controls {
+    background: #201f24 !important;
+}
+
+.live-chat-widget .comments-textarea {
+    background: #2b2b2b !important;
+}
+
+.live-comments-popout-active-message {
+    color: #555555 !important;
+}
+
+/* ------- Start Misc -------- */
+#gaming-event-promo-overlay {
+    background-color: #1c1d22 !important;
+    box-shadow: none !important;
+    border: 1px solid #333333 !important;
+}
+
+#gaming-event-promo-title {
+    color: #888888 !important;
+}
+
+.search-header {
+    border-color: #333333 !important;
+}
+
+.yt-uix-button-subscribe-unbranded, .yt-uix-button-subscribe-unbranded[disabled], .yt-uix-button-subscribe-unbranded[disabled]:hover, .yt-uix-button-subscribe-unbranded[disabled]:active, .yt-uix-button-subscribe-unbranded[disabled]:focus {
+    border-color: #333333 !important;
+    color: #eeeeee !important;
+    background-color: #5c5edc !important;
+}
+
+.guide-section.signup-promo {
+    color: #666666 !important;
+}
+
+#error-page-content p {
+    color: #888888 !important;
+    text-shadow: none !important;
+}
+
+#error-page-content > #yt-masthead #logo-container span.content-region {
+    display: none !important;
+}
+
+.yt-alert-default.yt-alert-info, .yt-alert-actionable.yt-alert-info, .yt-alert-naked.yt-alert-info .yt-alert-icon, .yt-alert-small.yt-alert-info {
+    background: #5c5edc !important;
+}
+
+#masthead-search-terms input, #masthead-search.consolidated-form input:focus, #masthead-search-term:focus {
+    color: #777777 !important;
+}
+
+/* YouTube Red Paid Content */
+.standalone-ypc-badge-renderer-icon-available {
+    background: #1c1c1c !important;
+}
+
+.standalone-collection-badge-renderer-icon {
+    background: #1d1d1d !important;
+}
+
+/* Browse Channels Page */
+/* Browse channels */
+.yt-gb-shelf-main-content {
+    border-color: #333333 !important;
+}
+
+.yt-gb-shelf-main-content {
+    box-shadow: none !important;
+}
+
+.yt-gb-shelf-main-content:hover {
+    box-shadow: none !important;
+}
+
+.yt-gb-shelf-paddle {
+    background-color: #2d2e33 !important;
+    border-color: #333333 !important;
+}
+
+.yt-gb-shelf .yt-gb-shelf-paddle:hover {
+    box-shadow: none !important;
+}
+
+.yt-gb-shelf .category-header .category-title {
+    color: #777777 !important;
+}
+
+.yt-gb-compact-shelf {
+    border-color: #333333 !important;
+    box-shadow: none !important;
+}
+
+/* Other Channel Pages */
+.yt-uix-expander-ellipsis {
+    background-color: #201f24 !important;
+}
+
+.yt-lockup-playlist-item {
+    border-color: #2b2b2b !important;
+}
+
+/* Search sidebar, watchcard (music) */
+.watch-card-list td {
+    border-color: #333333 !important;
+}
+
+.watch-card {
+    color: #666666 !important;
+}
+
+.watch-card .yt-uix-tabs-tab {
+    color: #777777 !important;
+}
+
+.watch-card .yt-uix-tabs-selected {
+    color: #999999 !important;
+}
+
+.watch-card .yt-uix-tabs-tab:hover {
+    color: #aaaaaa !important;
+}
+
+.watch-card-playall-button {
+    border-color: #555555 !important;
+    background: #5c5edc !important;
+    box-shadow: 0 0 70px #888888 !important;
+}
+
+.watch-card-playall-content {
+    color: #eeeeee !important;
+}
+
+.watch-card-collage:hover .watch-card-playall-halo {
+    box-shadow: 0 0 70px #888888 !important;
+}
+
+.watch-card .yt-uix-expander-collapsed .yt-uix-tabs-selected {
+    border-color: #5c5edc !important;
+}
+
+.watch-card-playall-halo {
+    border: 3px solid rgba(80, 80, 90, .3) !important;
+}
+
+/* YouTuber Username Hover Card */
+.nbc {
+    background-color: #27252b !important;
+    border-color: #333333 !important;
+    color: #999999 !important;
+}
+
+.eI {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -246px -95px !important;
+
+}
+
+.fI {
+    background: no-repeat url(http://i.imgur.com/WZMFrnt.png) -354px -147px !important;
+}
+
+a.zvd {
+    color: #777777 !important;
+}
+
+/* Test Tube */
+.yt-testtube-card-light .yt-testtube-card-title {
+    color: #5c5edc !important;
+}
+
+.yt-nav-dark {
+    background-color: #1c1d22 !important;
+}
+
+/* Top of page Progress Bar */
+#progress {
+    background: #5c5edc !important;
+}
+
+#progress dd, #progress dt {
+    background: #5c5edc !important;
+    box-shadow: transparent 1px 0 6px 1px !important;
+}
+
+/* Virtual Keyboard */
+.vk-box {
+    background-color: #2d2e33 !important;
+    border-color: #333333 !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.vk-t {
+    color: #777777 !important;
+}
+
+.vk-btn {
+    border-color: #3c3c3c !important;
+    color: #aaaaaa !important;
+    background: #33343a none !important;
+}
+
+.vk-btn:hover {
+    color: #8789ff !important;
+    border-color: #4b4b4b !important;
+}
+
+.vk-cap.vk-sf-b {
+    background-image: url('http://ssl.gstatic.com/inputtools/images/ita_kd_sprite3.png') !important;
+    -webkit-filter: invert(0.6) !important;
+    -moz-filter: invert(0.6) !important;
+    filter: invert(0.6) !important;
+}
+
+/* Page fixes, Non-English */
+/* Arabic */
+.guide-pinned .guide-pinning-enabled #appbar-guide-menu {
+    border-left-color: #333333 !important;
+}
+
+/* Linked comment */
+.comment-renderer-header .comment-renderer-linked-comment {
+    border-color: #444444 !important;
+}
+
+/* Legacy feed */
+.feed-item-container.legacy-style .feed-item-main {
+    border-color: #333333 !important;
+}
+
+/* Video Description Link Colors */
+#action-panel-details a {
+    color: #555555 !important;
+}
+
+#action-panel-details a:hover {
+    color: #5c5edc !important;
+}
+
+/* Recommended for you Search Page */
+#results .section-list li .item-section .branded-page-box {
+    border-left: none !important;
+    border-right: none !important;
+    border-color: #333333 !important;
+}
+
+.branded-page-module-title a {
+    color: #555555 !important;
+}
+
+/* Video Player Border */
+.watch-stage-mode .player-width {
+    border: 1px solid #2f2f2f !important;
+}
+
+/* YouTube Alerts */
+.yt-alert-actionable.yt-alert-warn, .yt-alert-default.yt-alert-warn, .yt-alert-naked.yt-alert-warn .yt-alert-icon, .yt-alert-small.yt-alert-warn {
+    background-color: #595ab0 !important;
+}
+
+.yt-alert-warn .yt-alert-content, .yt-alert-warn .yt-alert-buttons .yt-uix-button-content {
+    color: #cccccc !important;
+}
+
+/* View All Replies/Read More/Reply underline */
+.yt-uix-button-link:active, .yt-uix-button-link:hover {
+    border-bottom: 1px solid #333333 !important;
+    text-decoration: none !important;
+}
+
+/* YouTuber Username Hover Card */
+.nbc {
+    background-color: #27252b !important;
+    border-color: #333333 !important;
+    color: #999999 !important;
+}
+
+/* New like/dislike opacity fix */
+#comment-section-renderer .sprite-comment-actions {
+    opacity: .5 !important;
+}
+
+#comment-section-renderer .sprite-comment-actions:hover {
+    opacity: .9 !important;
+}
+
+/* reply button brighter text */
+#comment-section-renderer .comment-renderer-reply {
+    color: #777777 !important;
+}
+
+/* Playlist background (fix short playlists bg) */
+.watch-playlist {
+    background-color: #27252b !important;
+}
+
+/* Search result visited */
+.gssb_a span[style] {
+    color: #6c6ed3 !important;
+}
+
+/* Search result visited, remove link */
+a.gssb_j {
+    color: #666666 !important;
+}
+
+/* OVERRIDES */
+.yt-ui-menu-item,
+.yt-ui-menu-item,
+.yt-ui-menu-content,
+#page-container,
+body > #body-container,
+body,
+.yt-card,
+#comment-section-renderer,
+.comment-renderer-footer,
+.sprite-like-dislike,
+.yt-uix-hovercard-card-border,
+textarea.yt-uix-form-input-textarea.description-textarea,
+select.yt-uix-form-input-select-element.country-selector-select,
+span.yt-uix-form-input-select.country-selector {
+    background-color: transparent !important;
+}
+
+.ad-div,
+.masthead-ad-control {
+    display: none !important;
+}
+
+html, html * {
+    box-shadow: none !important;
+}
+
+.ytp-chrome-top, .ytp-playlist-menu {
+    top: 72px !important;
+}
+
+.ytp-playlist-menu * {
+    -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+#player .ytp-title {
+    text-align: center !important;
+    text-shadow: none !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-weight: 100 !important;
+    font-size: 145% !important;
+}
+
+#player .ytp-video-menu-item-title {
+    font-size: 100% !important;
+}
+
+#player .ytp-video-menu-item-thumbnail {
+    background-color: black !important;
+}
+
+#player .ytp-gradient-bottom {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 5%, rgba(0, 0, 0, 1) 45%) !important;
+}
+
+#player .ytp-gradient-top {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0.6) 100%) !important;
+    padding-bottom: 5px !important;
+}
+
+#player .ytp-chrome-top {
+    background-color: rgba(0, 0, 0, 0.6);
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 12px !important;
+}
+
+#player .ytp-autohide .ytp-chrome-top {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#masthead-positioner {
+    padding-top: 72px !important;
+    background-color: rgb(28, 29, 34) !important;
+}
+
+a.pl-video-title-link:hover {
+    text-decoration: none !important;
+}
+
+.yt-uix-tile, .pl-video-title-link {
+    cursor: default !important;
+}
+
+.branded-page-v2-secondary-col {
+    display: none !important;
+}
+
+#leanback .player-meta {
+    padding-top: 72px !important;
+}

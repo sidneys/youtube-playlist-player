@@ -41,3 +41,7 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
+
+
+# ELECTRON-CLOUD-DEPLOY CACHES
+electron-cloud-deploy-cache

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube on Top</title>
+    <link rel="stylesheet" type="text/css" href="../photon/photon.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+</head>
+<body id="body">
+
+    <!-- Window -->
+    <div class="window" id="window">
+
+        <!-- Header -->
+        <header class="toolbar toolbar-header" id="header">
+
+            <!-- Title -->
+            <h1 class="title" id="title"></h1>
+
+            <!-- Toolbar -->
+            <div class="toolbar-actions" id="toolbar">
+
+                <!-- Left -->
+                <div class="btn-group pull-left">
+                    <button class="btn btn-default" id="button-video">
+                        <span class="icon icon-video"></span>
+                    </button>
+                    <button class="btn btn-default" id="button-monitor">
+                        <span class="icon icon-monitor"></span>
+                    </button>
+                </div>
+                <!-- /Left -->
+
+                <!-- Right -->
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default" id="button-reload">
+                        <span class="icon icon-arrows-ccw"></span>
+                    </button>
+                </div>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default" id="button-home">
+                        <span class="icon icon-home"></span>
+                    </button>
+                    <button class="btn btn-default" id="button-left">
+                        <span class="icon icon-left-dir"></span>
+                    </button>
+                    <button class="btn btn-default" id="button-right">
+                        <span class="icon icon-right-dir"></span>
+                    </button>
+                    <button class="btn btn-default" id="button-playlist">
+                        <span class="icon icon-list"></span>
+                    </button>
+                </div>
+                <!-- /Right -->
+            </div>
+        </header>
+        <!-- /Header -->
+
+        <div id="spinner">
+            <div id="spinner__statustext">Connecting...</div>
+        </div>
+
+        <!-- Input -->
+        <div id="input">
+            <input id="input-field"
+                   type="text"
+                   placeholder="YouTube Playlist URL">
+            <span id="input-button" class="icon icon-play"></span>
+        </div>
+        <!-- /Input -->
+
+        <!-- Webview (Playlist)-->
+        <webview id="webview-playlist"
+                 preload="../scripts/playlist.js"
+                 src="http://blank.org"
+                 class="hide"
+                 autosize="on"
+                 partition="persist:app"
+                 disablewebsecurity="on"
+                 allowpopups="on">
+        </webview>
+        <!-- /Webview (Playlist)-->
+
+        <!-- Webview (Player)-->
+        <webview id="webview-player"
+                 preload="../scripts/player.js"
+                 src="http://blank.org"
+                 autosize="on"
+                 partition="persist:app"
+                 disablewebsecurity="on"
+                 allowpopups="on">
+        </webview>
+        <!-- /Webview (Player) -->
+
+    </div>
+    <!-- /Window -->
+
+    <!-- Scripts (Third Party) -->
+    <script src="../photon/photon.js"></script>
+
+    <!-- Scripts -->
+    <script src="../scripts/webview.js"></script>
+
+</body>
+</html>

@@ -1,128 +1,223 @@
 'use strict';
 
+
 /**
  * Modules: Node
  * @global
  */
-const path = require('path'),
-    util = require('util'),
-    url = require('url');
-
-/**
- * @global
- * @constant
- */
-const moduleRoot = path.join(__dirname, '..');
-
-
-/**
- * Modules: Internal
- * @global
- */
-const packageJson = require(path.join(moduleRoot, 'package.json'));
-
+const fs = require('fs-extra');
+const path = require('path');
+const url = require('url');
 
 /**
  * Modules: Electron
  * @global
  */
 const electron = require('electron');
-const { remote, ipcRenderer } = electron;
-const { session } = remote;
+const { ipcRenderer, remote } = electron;
+const session = remote.session;
+
+/**
+ * Modules
+ * External
+ * @global
+ * @constant
+ */
+const appRootPath = require('app-root-path').path;
+const _ = require('lodash');
+const normalizeUrl = require('normalize-url');
+const editorContextMenu = remote.require('electron-editor-context-menu');
+
+/**
+ * Modules: Internal
+ * @global
+ */
+const packageJson = require(path.join(appRootPath, 'package.json'));
+const dom = require(path.join(appRootPath, 'app', 'scripts', 'utils', 'dom'));
+const logger = require(path.join(appRootPath, 'lib', 'logger'))({ writeToFile: true });
 
 
 /**
- * Identifier
- * @constant
- * @default
+ * User Agent
+ * @global
  */
-const blockAds = true,
-    defaultPlaylistId = 'PL1yza397Mnflp07kfWxXKMBAXi6oLSCC3',
-    urlBaseYoutube = 'https://youtube.com/embed/videoseries?',
-    urlBaseYoutubeTV = 'https://www.youtube.com/tv/#/watch/video/control?',
-    urlSuffix = '&autoplay=1&autohide=1&showinfo=1&version=3&enablejsapi=1&iv_load_policy=1&modestbranding=1&cc_load_policy=1&vq=' + 'hd1080',
-    requestFilter = {
-        urls: [
-            '*://s0.2mdn.net', '*://googleads.g.doubleclick.net', '*://ad.doubleclick.net', '*://files.adform.net', '*://secure-ds.serving-sys.com',
-            //'*://*.doubleclick.net', '*://*.google.com/pagead*', '*://*.google.com/uds/api/ads/*', '*://*.googleadservices.com/pagead*', '*://*.googleapis.com/*log_interaction*?*', '*://*.googleapis.com/adsmeasurement', '*://*.googleapis.com/plus*', '*://*.googleapis.com/youtubei/v1/player/ad_break?*', '*://*.googlesyndication.com', '*://*.googleusercontent.com/generate_204', '*://*.gstatic.com/csi*?*ad_at*', '*://*.gstatic.com/csi*?*ad_to_video*', '*://*.gstatic.com/csi*?*mod_ad*', '*://*.gstatic.com/csi*?*yt_ad*', '*://*.youtube-nocookie.com/api/ads/trueview_redirect?*', '*://*.youtube-nocookie.com/gen_204', '*://*.youtube-nocookie.com/robots.txt', '*://*.youtube.com/ad_data_204*', '*://*.youtube.com/api/stats/ads*?*', '*://*.youtube.com/generate_204*', '*://*.youtube.com/gen_204', '*://*.youtube.com/get_ad_tags?*', '*://*.youtube.com/player_204', '*://*.youtube.com/ptracking?*', '*://*.youtube.com/set_awesome', '*://*.youtube.com/stream_204', '*://*.youtube.com/yva_video?*adformat*', '*://*.youtube.com/yva_video?*preroll*', '*://csi.gstatic.com/csi?*video_to_ad*', '*://manifest.googlevideo.com/generate_204'
-        ]
-    };
+let userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2906.0 Safari/537.36';
 
+/**
+ * URLS
+ * @constant
+ */
+const urlBase = {
+        embed: 'http://www.youtube.com/embed/videoseries?',
+        tv: 'http://www.youtube.com/tv/#/watch/video/control?',
+        playlist: 'http://www.youtube.com/playlist?'
+    },
+    urlSuffix = '&autoplay=1&autohide=1&showinfo=1&version=3&enablejsapi=1&iv_load_policy=1&modestbranding=1&vq=hd1080',
+    urlFilterList = [
+        '*.2mdn.net',
+        '*.doubleclick.net*',
+        '*.google.com/pagead*',
+        '*.google.com/uds/api/ads/*',
+        '*.googleadservices.com/pagead*',
+        '*.googleapis.com/*log_interaction*?*',
+        '*.googleapis.com/adsmeasurement*',
+        '*.googleapis.com/plus*',
+        '*.googleapis.com/youtubei/v1/player/ad_break?*',
+        '*.googlesyndication.com*',
+        '*.googleusercontent.com/generate_204*',
+        '*.gstatic.com/csi*?*ad_at*',
+        '*.gstatic.com/csi*?*ad_to_video*',
+        '*.gstatic.com/csi*?*mod_ad*',
+        '*.gstatic.com/csi*?*yt_ad*',
+        '*.youtube-nocookie.com/api/ads/trueview_redirect?*',
+        '*.youtube-nocookie.com/gen_204*',
+        '*.youtube-nocookie.com/robots.txt*',
+        '*.youtube.com/ad_data_204*',
+        '*.youtube.com/api/stats/ads*?*',
+        '*.youtube.com/api/stats/atr*?*',
+        '*.youtube.com/api/stats/qoe*?*',
+        '*.youtube.com/api/stats/watchtime*?*',
+        '*.youtube.com/generate_204*',
+        '*.youtube.com/gen_204*',
+        '*.youtube.com/get_ad_tags?*',
+        '*.youtube.com/player_204*',
+        '*.youtube.com/ptracking?*',
+        '*.youtube.com/set_awesome*',
+        '*.youtube.com/stream_204*',
+        '*.youtube.com/yva_video?*adformat*',
+        '*.youtube.com/yva_video?*preroll*',
+        '*csi.gstatic.com/csi?*video_to_ad*',
+        '*manifest.googlevideo.com/generate_204*'
+    ];
+
+/**
+ * Filesystem
+ * @constant
+ */
+const themeCss = {
+    urls: ['*.youtube.com/channel*', '*.youtube.com/feed*', '*.youtube.com/playlist*', '*.youtube.com/embed*'],
+    file: path.join(appRootPath, 'app', 'styles', 'youtube.com.css')
+};
 
 /**
  * Settings
  * @global
  */
-let electronSettings = remote.getGlobal('electronSettings');
-
-
-/**
- * Log
- */
-let logDefault = console.log;
-console.debug = function() {
-    let self = this,
-        args = Array.from(arguments),
-        label = args.shift();
-
-    ipcRenderer.send('log', arguments);
-    logDefault.apply(self, ['%c%s%c%s%c %c%s', 'font-weight: bold; background: #4AB367; color: white;', '[' + packageJson.name.toUpperCase() + ']', 'background: #4AB367; color: white; padding: 0 2px 0 0', '[' + label + ']', '', 'font-weight: bold', util.format.apply(null, args)]);
-};
-
+let electronSettings = remote.getGlobal('electronSettings'),
+    electronSettingsLoaded = false;
 
 /**
  * DOM
  * Components
+ * @global
  */
-let body = document.getElementById('body'),
-    webview = document.getElementById('webview'),
+const body = document.getElementById('body'),
+    spinner = document.getElementById('spinner'),
+    webviewPlayer = document.getElementById('webview-player'),
+    webviewPlaylist = document.getElementById('webview-playlist'),
     header = document.getElementById('header'),
-    title = document.getElementById('title');
+    title = document.getElementById('title'),
+    input = document.getElementById('input'),
+    inputField = document.getElementById('input-field'),
+    inputButton = document.getElementById('input-button'),
+    controls = {
+        navigation: {
+            left: document.getElementById('button-left'),
+            right: document.getElementById('button-right'),
+            home: document.getElementById('button-home'),
+            reload: document.getElementById('button-reload')
+        },
+        mode: {
+            tv: document.getElementById('button-video'),
+            embed: document.getElementById('button-monitor'),
+            playlist: document.getElementById('button-playlist')
+        }
+    };
+
 
 
 /**
- * DOM
- * Controls
+ * Enable User Interface Controls
  */
-let controls = {
-    left: document.getElementById('button-left'),
-    right: document.getElementById('button-right'),
-    reload: document.getElementById('button-reload'),
-    leanbackMode: document.getElementById('button-video'),
-    standardMode: document.getElementById('button-monitor')
+let enableControls = function() {
+    controls.navigation.left.addEventListener('click', () => {
+        webviewPlaylist.goBack();
+    });
+    controls.navigation.right.addEventListener('click', () => {
+        webviewPlaylist.goForward();
+    });
+    controls.navigation.home.addEventListener('click', () => {
+        webviewPlaylist.goToIndex(0);
+    });
+    controls.navigation.reload.addEventListener('click', () => {
+        electronSettings.get('user.playerType').then((currentPlayerType) => {
+            if (currentPlayerType === 'playlist') {
+                webviewPlaylist.reload();
+            } else {
+                webviewPlayer.reload();
+            }
+        });
+    });
+    controls.mode['embed'].addEventListener('click', () => {
+        electronSettings.set('user.playerType', 'embed')
+            .then(() => {});
+    });
+    controls.mode['tv'].addEventListener('click', () => {
+        electronSettings.set('user.playerType', 'tv')
+            .then(() => {});
+    });
+    controls.mode['playlist'].addEventListener('click', () => {
+        electronSettings.set('user.playerType', 'playlist')
+            .then(() => {});
+    });
+};
+
+
+
+/**
+ * Parse YouTube URLs
+ * @param {String} str - YouTube video and/or playlist id
+ * @returns {Object}
+ */
+let parseYoutubeUrl = function(str) {
+    let re = /(?:(?:\?|&)(?:v|list)=|embed\/|v\/|youtu\.be\/)((?!videoseries)[a-zA-Z0-9_]*)/g,
+        m;
+
+    if ((m = re.exec(str)) !== null) {
+        if (m.index === re.lastIndex) {
+            re.lastIndex++;
+        }
+
+        let id = str.match(new RegExp('v=([a-zA-Z0-9\_\-]+)&?'));
+        let list = str.match(new RegExp('list=([a-zA-Z0-9\-\_]+)&?'));
+
+        if (!id && !list) {
+            return false;
+        }
+
+        return {
+            videoId: null,
+            playlistId: list ? list[1] : null
+        };
+    }
+
+    return false;
 };
 
 /**
- * Controls
+ * Normalize urls for comparisons
  */
-controls.left.addEventListener('click', () => {
-    webview.goBack();
-});
+let cleanUrl = function(uri) {
+    // Remove Protocol
+    uri = uri.replace(/^https?:\/\//, '');
+    // Normalize
+    uri = normalizeUrl(uri, { normalizeProtocol: true, stripFragment: false, stripWWW: true });
 
-controls.right.addEventListener('click', () => {
-    webview.goForward();
-});
-
-controls.reload.addEventListener('click', () => {
-    webview.reload();
-});
-
-controls.standardMode.addEventListener('click', () => {
-    setDisplayMode('standard');
-});
-
-controls.leanbackMode.addEventListener('click', () => {
-    setDisplayMode('leanback');
-});
-
+    return uri;
+};
 
 /**
- * Session
- */
-let webviewSession;
-
-/**
- * YouTube URL
+ * Generate YouTube URLs
  */
 let generateYoutubeUrl = function(urlBase, urlSuffix, videoId, playlistId) {
     let urlString = urlBase;
@@ -135,8 +230,6 @@ let generateYoutubeUrl = function(urlBase, urlSuffix, videoId, playlistId) {
         urlString = urlString + 'v=' + videoId + '&' + urlSuffix;
     }
 
-    console.debug('generateYoutubeUrl', 'urlString', urlString);
-
     return urlString;
 };
 
@@ -147,152 +240,635 @@ let scaleToFill = function(element) {
     let scaleTimeout = setTimeout(function() {
         element.style.height = document.documentElement.clientHeight + 'px';
         element.style.width = document.documentElement.clientWidth + 'px';
-
-        // DEBUG
-        // console.debug('scaleToFill', 'header.nodeName', header.nodeName);
-        clearTimeout(scaleTimeout)
+        clearTimeout(scaleTimeout);
     }, 500);
 };
 
+/**
+ * URL Pattern Matcher
+ * @param {String} targetUrl - Url to test
+ * @param {Array} urlFilterList - List of patterns to test against
+ * @return {Boolean|undefined} - Return true if url is matched by one of the patterns
+ */
+let urlTester = function(targetUrl, urlFilterList) {
+
+    if (!targetUrl || !urlFilterList) {
+        return;
+    }
+
+    let url = _.toLower(targetUrl),
+        isMatch;
+
+    for (let urlFilter of urlFilterList) {
+        let pattern = urlFilter.replace(/[*]/g, '.*').toLowerCase().trim();
+
+        isMatch = new RegExp('^' + pattern + '$').test(url);
+
+        if (isMatch) {
+            // DEBUG
+            logger.debug('urlTester', 'isMatch', 'url', url, 'searchPattern', pattern);
+            break;
+        }
+    }
+
+    return isMatch;
+};
+
+
 
 /**
- * Request Filter
+ * URL Request Filter
  */
 let enableRequestFilter = function(targetSession) {
 
-    let ses = targetSession || session.defaultSession;
+    let ses = targetSession,
+        urlList = urlFilterList;
 
-    // DEBUG
-    console.debug('enableRequestFilter', 'ses', ses);
-    // console.debug('enableRequestFilter', 'ses.fromPartition()', ses.fromPartition());
+    // Workaround for filters currently being broken as of Electron 1.3.4
+    let requestCallback = function(details, callback) {
+        let cancelUrl = urlTester(details.url, urlList);
 
-    ses.webRequest.onBeforeRequest(requestFilter, (details, callback) => {
-        console.debug('enableRequestFilter', 'details', details.url);
-        callback({
-            cancel: true,
-            //redirectURL: 'http://127.0.0.1'
-        })
-    });
+        if (cancelUrl) {
+            callback({ cancel: false, redirectURL: 'https://localhost' });
 
-    ses.cookies.get({}, (error, cookies) => {
-        console.log('enableRequestFilter', 'error', error);
-        console.log('enableRequestFilter', 'cookies');
-        console.dir(cookies);
-    });
+            // DEBUG
+            logger.debug('URL blocked:', details.url);
+        } else {
+            callback({ cancel: false });
 
+            // DEBUG
+            logger.debug('URL allowed:', details.url);
+        }
+
+    };
+
+    ses.webRequest.onBeforeRequest({
+        urls: ['*']
+    }, requestCallback);
 };
 
 
 /**
- * Display Mode
+ * Inject CSS
  */
-let setDisplayMode = function(displayMode) {
+let injectStylesheet = function(view, currentUrl, urlList, filePath, cb) {
 
-    // Reset button state
-    controls.leanbackMode.classList.remove('active');
-    controls.standardMode.classList.remove('active');
+    let callback = cb || function() { },
+        targetView = view,
+        cssFile = filePath,
+        cssString;
 
-    switch (displayMode) {
-        case 'leanback':
-            // Leanback Mode
-            webview.src = generateYoutubeUrl(urlBaseYoutubeTV, urlSuffix, null, defaultPlaylistId);
-            electronSettings.set('app.viewMode', 'leanback').then(() => {});
-            controls.leanbackMode.classList.add('active');
-            break;
-        default:
-            // Standard Mode
-            webview.src = generateYoutubeUrl(urlBaseYoutube, urlSuffix, null, defaultPlaylistId);
-            electronSettings.set('app.viewMode', 'standard').then(() => {});
-            controls.standardMode.classList.add('active');
-            break;
+    if (currentUrl && !urlTester(currentUrl, urlList)) {
+        return;
     }
 
-    console.log('setDisplayMode', 'displayMode', displayMode);
+    fs.readFile(cssFile, function(err, data) {
+        if (err) {
+            logger.error(err);
+            return callback(err);
+        }
+
+        cssString = data.toString();
+        targetView.insertCSS(cssString);
+        callback(null, cssFile);
+
+        // DEBUG
+        logger.debug('injectStylesheet', 'cssFile', cssFile);
+    });
 };
 
-
+/**
+ * Set View dragging
+ */
+let setViewDragging = function(view, enable) {
+    if (enable) {
+        view.classList.add('draggable');
+    } else {
+        view.classList.remove('draggable');
+    }
+};
 
 /**
- * Body
+ * Get Webview src URL
+ */
+let getViewUrl = function(view) {
+    return cleanUrl(view.getAttribute('src'), { stripFragment: false });
+};
+
+/**
+ * Get the YouTube viewing Mode for a Uri, denoted by the primary URL path
+ * @returns {String} - embed, tv, playlist
+ */
+let getYoutubeModeForUri = function(uri) {
+    let urlObject = url.parse(uri);
+
+    return urlObject.pathname.split('/')[1];
+};
+
+/**
+ * Get the YouTube viewing mode for a webview
+ * @returns {String} - embed, tv, playlist
+ */
+let getYoutubeModeForView = function(view) {
+    return getYoutubeModeForUri(getViewUrl(view));
+};
+
+/**
+ * Set Webview src URL
+ */
+let setViewUrl = function(view, urlType, cb) {
+    let callback = cb || function() {},
+        targetView = view;
+
+    electronSettings.get('user.playlistId')
+        .then(playlistId => {
+            let ytUrl = cleanUrl(generateYoutubeUrl(urlBase[urlType], urlSuffix, null, playlistId));
+
+            // Only load if new URL is different
+            if (getViewUrl(targetView) !== ytUrl) {
+                targetView.loadURL(ytUrl);
+                if (url.parse(targetView.getAttribute('src')).query) {
+                    targetView.setAttribute('loaded', 'loaded');
+                }
+            }
+
+            callback(null);
+
+            // DEBUG
+            logger.debug('setViewUrl', ytUrl);
+        });
+};
+
+/**
+ * Load URLS
+ */
+let setPlayerUrl = function(view, cb) {
+    let callback = cb || function() {},
+        targetView = view;
+
+    electronSettings.get('user.playerType')
+        .then((playerType) => {
+
+            if (playerType === 'playlist') {
+                return;
+            }
+
+            if (targetView.getAttribute('loaded') && (getYoutubeModeForView(targetView) === playerType)) {
+                //return;
+            }
+
+            setViewUrl(targetView, playerType, function() {
+                callback(null);
+            });
+        });
+};
+
+let hidePlaylist = function() {
+    setViewDragging(webviewPlayer, true);
+    webviewPlaylist.classList.add('hide');
+    controls.navigation.left.classList.add('hide');
+    controls.navigation.right.classList.add('hide');
+    controls.navigation.home.classList.add('hide');
+};
+
+let showPlaylist = function() {
+    // Dragging
+    setViewDragging(webviewPlayer, false);
+    webviewPlaylist.classList.remove('hide');
+    controls.navigation.left.classList.remove('hide');
+    controls.navigation.right.classList.remove('hide');
+    controls.navigation.home.classList.remove('hide');
+};
+
+/**
+ * Set Playlist Id
+ */
+let setPlaylistId = function(id, cb) {
+
+    let callback = cb || function() {};
+
+    electronSettings.set('user.playlistId', id)
+        .then(() => {
+            callback(null);
+            // DEBUG
+            logger.debug('setPlaylistId', id);
+        });
+};
+
+/**
+ * Set YouTube Player Mode
+ */
+let setViewType = function(type, cb) {
+
+    let playerType = type;
+
+    if (!_.isString(playerType)) {
+        return;
+    }
+
+    let callback = cb || function() {};
+
+    electronSettings.set('user.playerType', playerType)
+        .then(() => {
+            switch (playerType) {
+                case 'tv':
+                    controls.mode['tv'].classList.add('active');
+                    controls.mode['embed'].classList.remove('active');
+                    controls.mode['playlist'].classList.remove('active');
+                    hidePlaylist();
+                    break;
+                case 'embed':
+                    controls.mode['tv'].classList.remove('active');
+                    controls.mode['embed'].classList.add('active');
+                    controls.mode['playlist'].classList.remove('active');
+                    hidePlaylist();
+                    break;
+                case 'playlist':
+                    webviewPlaylist.reload();
+                    controls.mode['playlist'].classList.add('active');
+                    showPlaylist();
+                    break;
+            }
+
+            callback(null);
+        });
+};
+
+/**
+ * Load Settings
+ * {
+ */
+let loadSetting = function(electronSettingsInstance, keyPath, cb) {
+
+    let callback = cb || function() { };
+
+    electronSettingsInstance.get(keyPath)
+        .then(setting => {
+            switch (keyPath) {
+                case 'user.playlistId':
+                    if (_.isEmpty(setting)) {
+                        dom.setVisibility(input, true);
+
+                    } else {
+                        dom.setVisibility(input, false);
+                        setPlayerUrl(webviewPlayer);
+                    }
+                    break;
+                case 'user.playerType':
+                    setViewType(setting);
+                    setPlayerUrl(webviewPlayer);
+                    break;
+            }
+
+            // DEBUG
+            logger.debug('loadSetting: ' + keyPath, setting);
+
+            callback(null, setting);
+        }, (err) => {
+            callback(err);
+        });
+};
+
+/**
+ * Observe Settings
+ */
+let observeSettings = function(electronSettingsInstance, keyPath) {
+    electronSettingsInstance.observe(keyPath, function(ev) {
+        loadSetting(electronSettingsInstance, keyPath);
+
+        // DEBUG
+        logger.debug('observeSettings: ' + keyPath, ev.oldValue + ' --> ' + ev.newValue);
+    });
+};
+
+/**
  * @listens body:mouseover
  */
 body.addEventListener('mouseover', function() {
-    header.classList.add('show');
-
-    // DEBUG
-    // console.debug('window', 'mouseenter');
+    dom.setVisibility(header, true);
 }, true);
 
 /**
- * Body
  * @listens body:mouseleave
  */
 body.addEventListener('mouseleave', function() {
-    header.classList.remove('show');
+    dom.setVisibility(header, false);
+}, true);
+
+/**
+ * @listens window:resize
+ */
+window.addEventListener('resize', function() {
+    scaleToFill(webviewPlayer);
+    scaleToFill(webviewPlaylist);
+}, true);
+
+/**
+ * @listens webview:dom-ready
+ */
+webviewPlayer.addEventListener('dom-ready', () => {
+
+    // Request Filter Mode
+    enableRequestFilter(session.fromPartition('persist:app'));
+
+    // Commit Settings
+    if (!electronSettingsLoaded) {
+        loadSetting(electronSettings, 'user.playlistId', function(err, result) {
+            if (err) {
+                return logger.debug('loadSettings', 'callback', 'err', err);
+            }
+
+            // DEBUG
+            logger.debug('loadSetting', 'callback', 'user.playlistId', result);
+
+            loadSetting(electronSettings, 'user.playerType', function(err, result) {
+                if (err) {
+                    return logger.debug('loadSettings', 'callback', 'err', err);
+                }
+
+                // Observe Settings
+                observeSettings(electronSettings, 'user.playlistId');
+                observeSettings(electronSettings, 'user.playerType');
+
+                // Start Playback
+                electronSettingsLoaded = true;
+                setViewUrl(webviewPlaylist, 'playlist');
+                setPlayerUrl(webviewPlayer);
+
+                // DEBUG
+                logger.debug('loadSetting', 'callback', 'user.playerType', result);
+            });
+
+        });
+    }
+    // DEBUG
+    logger.debug('webview', 'event', 'dom-ready');
+}, true);
+
+/**
+ * @listens webviewPlaylist:dom-ready
+ */
+webviewPlaylist.addEventListener('dom-ready', () => {
+    //setViewUrl(webviewPlaylist, 'playlist');
+});
+
+/**
+ * @listens webviewPlaylist:will-navigate
+ */
+webviewPlaylist.addEventListener('will-navigate', (url) => {
+    // DEBUG
+    logger.debug('webviewPlaylist', 'will-navigate', url);
+});
+
+/**
+ * @listens webview:load-commit
+ */
+webviewPlayer.addEventListener('load-commit', () => {
+    injectStylesheet(webviewPlayer, null, themeCss.urls, themeCss.file);
+});
+
+/**
+ * @listens webviewPlaylist:load-commit
+ */
+webviewPlaylist.addEventListener('load-commit', () => {
+    injectStylesheet(webviewPlaylist, null, themeCss.urls, themeCss.file);
+});
+
+/**
+ * Measure element dimensions.
+ * @param {String} txt - Element content
+ * @param {String} elementType - Element font size
+ * @param {Number} fontSize - Font size
+ * @param {String} fontFamily - Font Family
+ * @param {String} fontWeight - Font Weight
+ * @returns {Object}
+ */
+let measureInputTextlength = function(txt, elementType, fontSize, fontFamily, fontWeight) {
+    let className = 'sizereference',
+        element = document.querySelector('.' + elementType + '.' + className),
+        elementRect;
+
+    if (!element) {
+        element = document.createElement('span');
+
+        element.classList.add(elementType);
+        element.classList.add(className);
+        document.querySelectorAll('body')[0].appendChild(element);
+    }
+    element.innerHTML = txt;
+    element.style.fontSize = fontSize + 'px';
+    element.style.fontFamily = fontFamily;
+    element.style.fontWeight = fontWeight;
+
+    element.style.display = 'block';
+    elementRect = element.getBoundingClientRect();
+    element.style.display = 'none';
+
+    return {
+        width: elementRect.width,
+        height: elementRect.height
+    };
+};
+
+/**
+ * Adapt input field font size to fit its content
+ * @param {Element} element - Input field
+ */
+let adaptInputFontSize = function(element) {
+    let inputElement = element,
+        txt = inputElement.value,
+        type = inputElement.tagName.toLowerCase();
+
+    let fontSize = parseFloat(inputElement.getAttribute('font-size-initial') || (inputElement.setAttribute('font-size-initial', getComputedStyle(inputElement)['font-size']))),
+        fontFamily = getComputedStyle(inputElement)['font-family'],
+        fontWeight = getComputedStyle(inputElement)['font-weight'];
+
+    let maxWidth = inputElement.getBoundingClientRect().width + 5,
+        textWidth = measureInputTextlength(txt, type, fontSize, fontFamily, fontWeight).width;
+
+    inputElement.style.fontFamily = fontFamily;
+    inputElement.style.fontWeight = fontWeight;
+    if (textWidth > maxWidth) {
+        let updatedFontSize = fontSize * maxWidth / textWidth * 0.9;
+        inputElement.style.fontSize = updatedFontSize + 'px';
+    } else {
+        inputElement.style.fontSize = fontSize;
+    }
+};
+
+/**
+ * Update element classes (valid/invalid)
+ *
+ * @param {Element} inputElement - input element to modify
+ * @param {Element=} externalElement - Evaluate other nodes' value
+ * @param {Boolean=} autosize - Autosize fonts
+ */
+let setInputClassByContentValidation = function(inputElement, externalElement, autosize) {
+    let targetElement = inputElement,
+        referenceElement = externalElement || targetElement;
+
+    if (referenceElement) {
+        let timer = setTimeout(function() {
+            let youtubeUrlObject = parseYoutubeUrl(referenceElement.value);
+
+            // Invalid
+            if (!youtubeUrlObject) {
+                targetElement.classList.remove('valid');
+                targetElement.classList.add('invalid');
+                return;
+
+            }
+
+            // Valid
+            targetElement.classList.add('valid');
+            targetElement.classList.remove('invalid');
+
+            setPlaylistId(youtubeUrlObject.playlistId);
+
+            clearTimeout(timer);
+        }, 500);
+    } else {
+        targetElement.classList.remove('valid');
+        targetElement.classList.remove('invalid');
+    }
+
+    if (autosize) {
+        adaptInputFontSize(targetElement);
+    }
+};
+
+/**
+ * @listens inputField:input
+ */
+inputField.addEventListener('input', () => {
+    setInputClassByContentValidation(inputField, inputField, true);
+    setInputClassByContentValidation(inputButton, inputField);
 
     // DEBUG
-    // console.debug('window', 'mouseleave');
+    logger.debug('inputField: event', 'input');
+}, true);
+
+/**
+ * @listens inputField:load-commit
+ */
+inputField.addEventListener('keypress', (ev) => {
+    let key = ev.which || ev.keyCode;
+    if (key === 13) {
+        if (inputField.classList.contains('valid')) {
+            setPlaylistId(inputField.value);
+        } else {
+            inputField.classList.add('invalid-shake');
+            let timer = setTimeout(function() {
+                inputField.classList.remove('invalid-shake');
+                clearTimeout(timer);
+            }, 1000);
+        }
+    }
+
+    // DEBUG
+    logger.debug('inputField: event', 'keypress');
 }, true);
 
 
 
 /**
- * Window
+ * @listens inputButton:click
+ */
+inputButton.addEventListener('click', function() {
+    dom.setVisibility(input, true);
+}, true);
+
+/**
+ * Show Spinner
+ */
+let presentSpinner = function() {
+    dom.setVisibility(spinner, true, 1000);
+};
+
+/**
+ * Hide Spinner
+ */
+let dismissSpinner = function() {
+    dom.setVisibility(spinner, false, 1000);
+};
+
+
+/**
+ * Add native context menus
+ * @listens window:PointerEvent#contextmenu
+ */
+window.addEventListener('contextmenu', (ev) => {
+    if (!ev.target['closest']('textarea, input, [contenteditable="true"]')) {
+        return;
+    }
+
+    let menu = editorContextMenu();
+
+    let menuTimeout = setTimeout(function() {
+        menu.popup(remote.getCurrentWindow());
+        return clearTimeout(menuTimeout);
+    }, 60);
+});
+
+/**
  * @listens window:load
  */
 window.addEventListener('load', function() {
 
-    // Window Style
+    // Enable Controls
+    enableControls();
+
+    // Init Input
+    setInputClassByContentValidation(inputField, inputField, true);
+    setInputClassByContentValidation(inputButton, inputField);
+
+    // Window title
     title.innerText = packageJson.productName;
 
-    // Window Size
-    window.addEventListener('resize', function() {
-        scaleToFill(webview);
-    }, true);
-
-    scaleToFill(webview);
-
-    // Init Mode
-    electronSettings.get('app.viewMode')
-        .then(viewMode => {
-           setDisplayMode(viewMode);
-        });
+    // Webview size
+    scaleToFill(webviewPlayer);
+    scaleToFill(webviewPlaylist);
 
     // DEBUG
-    console.debug('window', 'load');
+    logger.debug('window:load');
 }, true);
 
-
+/**
+ * @listens window:dom-ready
+ */
+window.addEventListener('dom-ready', function() {
+    // Set UserAgent
+    webviewPlayer.setUserAgent(userAgent);
+    webviewPlaylist.setUserAgent(userAgent);
+}, true);
 
 /**
- * Webview
- * @listens webview:did-finish-load
+ * Pass IPC messages between Main <-> Renderer/Host <-> Embedded Webviews
+ *
+ * @listens webview:ipcEvent#ipc-message
+ * @fires ipcRenderer:ipcEvent
  */
-webview.addEventListener('did-finish-load', () => {
+webviewPlayer.addEventListener('ipc-message', (ev) => {
 
-    // Request Filter
-    if (blockAds === true) {
-        //enableRequestFilter(webview.getWebContents().session);
-        enableRequestFilter();
+    // Pass to main process
+    ipcRenderer.send(ev.channel, ev.args.join());
+
+    // Local handlers
+    switch (ev.channel) {
+        // Network
+        case 'network':
+            let status = ev.args[0];
+            switch (status) {
+                case 'online':
+                    dismissSpinner();
+                    break;
+                case 'offline':
+                    presentSpinner();
+                    break;
+            }
     }
 
     // DEBUG
-    console.debug('webview', 'did-finish-load');
-    if (process.env['DEBUG']) { webview.openDevTools(); }
+    logger.debug('webview:ipc-message', ev.channel, ev.args[0]);
 });
 
-
-/**
- * Webview
- * @listens webview:new-window
- */
-webview.addEventListener('new-window', (ev) => {
-    let protocol = url.parse(ev.url).protocol;
-
-    if (protocol === 'http:' || protocol === 'https:') {
-        remote.shell.openExternal(ev.url);
-    }
-
-    // DEBUG
-    console.debug('webview', 'new-window', ev.url);
-});
