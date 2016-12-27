@@ -17,7 +17,7 @@ const childProcess = require('child_process');
  * @global
  * @constant
  */
-const appRootPath = require('app-root-path');
+const appRootPath = require('app-root-path').path;
 const electron = require('electron');
 
 /**
@@ -36,6 +36,9 @@ const packageJson = require(path.join(appRootPath, 'package.json'));
 let appMain = path.join(appRootPath, packageJson.main);
 
 
+/**
+ * Main
+ */
 childProcess.spawn(electron, [ appMain ], {
     stdio: 'inherit'
 });
