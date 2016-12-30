@@ -42,14 +42,15 @@ const keypath = require('keypath');
 const logger = require(path.join(appRootPath, 'lib', 'logger'))({ writeToFile: true });
 const packageJson = require(path.join(appRootPath, 'package.json'));
 const platformHelper = require(path.join(appRootPath, 'lib', 'platform-helper'));
+const requestFilterService = require(path.join(appRootPath, 'app', 'scripts', 'services', 'request-filter-service'));
 
 
 /**
  * App
  * @global
  */
-let appName = packageJson.name,
-    appVersion = packageJson.version;
+let appName = packageJson.name;
+let appVersion = packageJson.version;
 
 /**
  * Paths
@@ -124,6 +125,14 @@ let setFloatingWindow = (floatingWindow) => {
 };
 
 /**
+ *  Filter Ads
+ */
+let setFilterAds = (filterAds) => {
+    settings.setSync('user.filterAds', filterAds);
+    requestFilterService.set(filterAds);
+};
+
+/**
  * Handle App Settings Click
  * @param {Electron.MenuItem} menuItem - Menu item
  * @param {Object} settingsInstance - electron-settings instance
@@ -166,6 +175,7 @@ let settingsDefaults = {
     },
     user: {
         alwaysOnTop: false,
+        filterAds: true,
         floatingWindow: false,
         showWindow: true,
         activeView: '',
@@ -213,25 +223,30 @@ app.on('ready', () => {
     settings.defaults(settingsDefaults);
     settings.applyDefaultsSync();
 
-    // Update Settings
-    settings.setSync('internal.currentVersion', appVersion);
-
     // Apply Settings
     settings.get('internal.windowBounds')
         .then(windowBounds => {
             BrowserWindow.getAllWindows()[0].setBounds(windowBounds);
         });
+
     settings.get('user.alwaysOnTop')
         .then(alwaysOnTop => {
             setAlwaysOnTop(alwaysOnTop);
         });
+
     settings.get('user.floatingWindow')
         .then(floatingWindow => {
             setFloatingWindow(floatingWindow);
         });
+
     settings.get('user.showWindow')
         .then(showWindow => {
             setShowWindow(showWindow);
+        });
+
+    settings.get('user.filterAds')
+        .then(filterAds => {
+            setFilterAds(filterAds);
         });
 
     // Settings Configuration
@@ -253,6 +268,7 @@ module.exports = {
     setAlwaysOnTop: setAlwaysOnTop,
     setShowWindow: setShowWindow,
     setFloatingWindow: setFloatingWindow,
+    setFilterAds: setFilterAds,
     settingsDefaults: settingsDefaults,
     settingsEventHandlers: settingsEventHandlers,
     toggleSettingsProperty: toggleSettingsProperty,

@@ -35,6 +35,7 @@ const logger = require(path.join(appRootPath, 'lib', 'logger'))({ writeToFile: t
 const packageJson = require(path.join(appRootPath, 'package.json'));
 const platformHelper = require(path.join(appRootPath, 'lib', 'platform-helper'));
 const settings = require(path.join(appRootPath, 'app', 'scripts', 'configuration', 'settings'));
+const requestFilterService = require(path.join(appRootPath, 'app', 'scripts', 'services', 'request-filter-service'));
 
 
 /**
@@ -126,6 +127,18 @@ let trayMenuTemplate = [
         type: 'separator'
     },
     {
+        label: '👊 Filter Ads',
+        id: 'filterAds',
+        type: 'checkbox',
+        checked: settings.settings.getSync('user.filterAds'),
+        click(menuItem) {
+            settings.setFilterAds(menuItem.checked);
+        }
+    },
+    {
+        type: 'separator'
+    },
+    {
         label: '🔥 Reset Playlist',
         click() {
             settings.reset(() => {
@@ -172,6 +185,8 @@ let createTrayMenu = () => {
 
     return trayMenu;
 };
+
+
 
 app.on('ready', () => {
     createTrayMenu();

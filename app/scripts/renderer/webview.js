@@ -35,69 +35,24 @@ const editorContextMenu = remote.require('electron-editor-context-menu');
 const packageJson = require(path.join(appRootPath, 'package.json'));
 const dom = require(path.join(appRootPath, 'app', 'scripts', 'utils', 'dom'));
 const logger = require(path.join(appRootPath, 'lib', 'logger'))({ writeToFile: true });
+const isDebug = require(path.join(appRootPath, 'lib', 'is-debug'));
 
 
 /**
- * User Agent
  * @global
  */
-let userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2906.0 Safari/537.36';
-
-/**
- * URLS
- * @constant
- */
+const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2906.0 Safari/537.36';
+const urlSuffix = '&autoplay=1&autohide=1&showinfo=1&version=3&enablejsapi=1&iv_load_policy=1&modestbranding=1&vq=hd1080';
 const urlBase = {
         embed: 'http://www.youtube.com/embed/videoseries?',
         tv: 'http://www.youtube.com/tv/#/watch/video/control?',
         playlist: 'http://www.youtube.com/playlist?'
-    },
-    urlSuffix = '&autoplay=1&autohide=1&showinfo=1&version=3&enablejsapi=1&iv_load_policy=1&modestbranding=1&vq=hd1080',
-    urlFilterList = [
-        '*.2mdn.net',
-        '*.doubleclick.net*',
-        '*.google.com/pagead*',
-        '*.google.com/uds/api/ads/*',
-        '*.googleadservices.com/pagead*',
-        '*.googleapis.com/*log_interaction*?*',
-        '*.googleapis.com/adsmeasurement*',
-        '*.googleapis.com/plus*',
-        '*.googleapis.com/youtubei/v1/player/ad_break?*',
-        '*.googlesyndication.com*',
-        '*.googleusercontent.com/generate_204*',
-        '*.gstatic.com/csi*?*ad_at*',
-        '*.gstatic.com/csi*?*ad_to_video*',
-        '*.gstatic.com/csi*?*mod_ad*',
-        '*.gstatic.com/csi*?*yt_ad*',
-        '*.youtube-nocookie.com/api/ads/trueview_redirect?*',
-        '*.youtube-nocookie.com/gen_204*',
-        '*.youtube-nocookie.com/robots.txt*',
-        '*.youtube.com/ad_data_204*',
-        '*.youtube.com/api/stats/ads*?*',
-        '*.youtube.com/api/stats/atr*?*',
-        '*.youtube.com/api/stats/qoe*?*',
-        '*.youtube.com/api/stats/watchtime*?*',
-        '*.youtube.com/generate_204*',
-        '*.youtube.com/gen_204*',
-        '*.youtube.com/get_ad_tags?*',
-        '*.youtube.com/player_204*',
-        '*.youtube.com/ptracking?*',
-        '*.youtube.com/set_awesome*',
-        '*.youtube.com/stream_204*',
-        '*.youtube.com/yva_video?*adformat*',
-        '*.youtube.com/yva_video?*preroll*',
-        '*csi.gstatic.com/csi?*video_to_ad*',
-        '*manifest.googlevideo.com/generate_204*'
-    ];
-
-/**
- * Filesystem
- * @constant
- */
+    };
 const themeCss = {
     urls: ['*.youtube.com/channel*', '*.youtube.com/feed*', '*.youtube.com/playlist*', '*.youtube.com/embed*'],
     file: path.join(appRootPath, 'app', 'styles', 'youtube.com.css')
 };
+
 
 /**
  * Settings
@@ -233,8 +188,6 @@ let generateYoutubeUrl = function(urlBase, urlSuffix, videoId, playlistId) {
     return urlString;
 };
 
-
-
 let scaleToFill = function(element) {
 
     let scaleTimeout = setTimeout(function() {
@@ -243,70 +196,6 @@ let scaleToFill = function(element) {
         clearTimeout(scaleTimeout);
     }, 500);
 };
-
-/**
- * URL Pattern Matcher
- * @param {String} targetUrl - Url to test
- * @param {Array} urlFilterList - List of patterns to test against
- * @return {Boolean|undefined} - Return true if url is matched by one of the patterns
- */
-let urlTester = function(targetUrl, urlFilterList) {
-
-    if (!targetUrl || !urlFilterList) {
-        return;
-    }
-
-    let url = _.toLower(targetUrl),
-        isMatch;
-
-    for (let urlFilter of urlFilterList) {
-        let pattern = urlFilter.replace(/[*]/g, '.*').toLowerCase().trim();
-
-        isMatch = new RegExp('^' + pattern + '$').test(url);
-
-        if (isMatch) {
-            // DEBUG
-            logger.debug('urlTester', 'isMatch', 'url', url, 'searchPattern', pattern);
-            break;
-        }
-    }
-
-    return isMatch;
-};
-
-
-
-/**
- * URL Request Filter
- */
-let enableRequestFilter = function(targetSession) {
-
-    let ses = targetSession,
-        urlList = urlFilterList;
-
-    // Workaround for filters currently being broken as of Electron 1.3.4
-    let requestCallback = function(details, callback) {
-        let cancelUrl = urlTester(details.url, urlList);
-
-        if (cancelUrl) {
-            callback({ cancel: false, redirectURL: 'https://localhost' });
-
-            // DEBUG
-            logger.debug('URL blocked:', details.url);
-        } else {
-            callback({ cancel: false });
-
-            // DEBUG
-            logger.debug('URL allowed:', details.url);
-        }
-
-    };
-
-    ses.webRequest.onBeforeRequest({
-        urls: ['*']
-    }, requestCallback);
-};
-
 
 /**
  * Inject CSS
@@ -567,10 +456,6 @@ window.addEventListener('resize', function() {
  * @listens webview:dom-ready
  */
 webviewPlayer.addEventListener('dom-ready', () => {
-
-    // Request Filter Mode
-    enableRequestFilter(session.fromPartition('persist:app'));
-
     // Commit Settings
     if (!electronSettingsLoaded) {
         loadSetting(electronSettings, 'user.playlistId', function(err, result) {
@@ -849,7 +734,6 @@ window.addEventListener('dom-ready', function() {
  * @fires ipcRenderer:ipcEvent
  */
 webviewPlayer.addEventListener('ipc-message', (ev) => {
-
     // Pass to main process
     ipcRenderer.send(ev.channel, ev.args.join());
 

@@ -39,14 +39,13 @@ install:
 
 
 build_script:
-  - cmd: npm run-script build win32
+  - cmd: npm run-script build
 
 test: off
 
 artifacts:
-  - path: build\release\*.exe
-      
-    
+  - path: build\output\win\*.exe
+
 deploy:
   - provider: GitHub
     tag: v$(PACKAGE_VERSION)
@@ -62,6 +61,6 @@ notifications:
   - provider: Webhook
     url: https://webhooks.gitter.im/e/6cf54138e3590fed049b
     method: GET
-    on_build_success: true
+    on_build_success: false
     on_build_failure: true
     on_build_status_changed: true

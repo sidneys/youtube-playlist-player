@@ -3,36 +3,29 @@
 
 /**
  * Modules
+ * Node
+ * @global
+ * @constant
+ */
+const path = require('path');
+
+/**
+ * Modules
  * External
  * @global
  * @constant
  */
-const appRootPath = require('app-root-path').path;
+const appRootPath = require('app-root-path');
 const electronCompile = require('electron-compile');
 
 
 /**
- * Get Name of active NPM Script
- *  @global
+ * Set Application Root
  */
-let npmScript = process.env['npm_lifecycle_event'];
+appRootPath.setPath(path.join(__dirname, '..'));
+
 
 /**
- * Set DEBUG Environment Variable
- * @global
+ * Init
  */
-if (npmScript === 'debug') {
-    if (!process.env['DEBUG']) { process.env['DEBUG'] = true; }
-}
-
-/**
- * Set LIVERELOAD Environment Variable
- * @global
- */
-if (npmScript === 'livereload') {
-    if (!process.env['DEBUG']) { process.env['DEBUG'] = true; }
-    process.env['livereload'] = true;
-}
-
-
-electronCompile.init(appRootPath, './scripts/components/application');
+electronCompile.init(appRootPath.path, './scripts/components/application');

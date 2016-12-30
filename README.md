@@ -1,7 +1,7 @@
-# YT Playlist Pro [![Beta](https://img.shields.io/badge/status-beta-blue.svg?style=flat)]() [![TravisCI](http://img.shields.io/travis/sidneys/yt-playlist-pro.svg?style=flat)](http://travis-ci.org/sidneys/yt-playlist-pro) [![AppVeyor](https://ci.appveyor.com/api/projects/status/d69sb6iav7tnrldq?svg=true)](https://ci.appveyor.com/project/sidneys/yt-playlist-pro) [![npm](https://img.shields.io/npm/v/yt-playlist-pro.svg?style=flat)](https://npmjs.com/package/yt-playlist-pro) 
+# YT Playlist Pro [![Beta](https://img.shields.io/badge/status-beta-blue.svg?style=flat)]() [![travis](http://img.shields.io/travis/sidneys/yt-playlist-pro.svg?style=flat)](http://travis-ci.org/sidneys/yt-playlist-pro) [![appveyor](https://ci.appveyor.com/api/projects/status/d69sb6iav7tnrldq?svg=true)](https://ci.appveyor.com/project/sidneys/yt-playlist-pro) [![npm](https://img.shields.io/npm/v/yt-playlist-pro.svg?style=flat)](https://npmjs.com/package/yt-playlist-pro) [![dependencies](https://img.shields.io/david/sidneys/yt-playlist-pro.svg?style=flat-square)](https://npmjs.com/package/yt-playlist-pro) [![devDependencies](https://img.shields.io/david/dev/sidneys/yt-playlist-pro.svg?style=flat-square)](https://npmjs.com/package/yt-playlist-pro)
 
 <p align="center">
-  <img height="250px" src="https://raw.githubusercontent.com/sidneys/yt-playlist-pro/release/resources/graphics/icon-app.png"/><br><br>
+  <img height="250px" src="https://raw.githubusercontent.com/sidneys/yt-playlist-pro/release/resources/graphics/icon.png"/><br><br>
   <b>Watch & edit your YouTube playlist on the desktop.</b><br>
   Available for macOS, Windows and Linux.
 </p>

@@ -17,7 +17,7 @@ const util = require('util');
  * @global
  * @constant
  */
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, ipcMain } = require('electron');
 
 /**
  * Chrome Commandline Switches
@@ -47,14 +47,12 @@ const platformHelper = require(path.join(appRootPath, 'lib', 'platform-helper'))
 const settings = require(path.join(appRootPath, 'app', 'scripts', 'configuration', 'settings'));
 const appMenu = require(path.join(appRootPath, 'app', 'scripts', 'menus', 'app-menu'));
 const trayMenu = require(path.join(appRootPath, 'app', 'scripts', 'menus', 'tray-menu'));
+const isDebug = require(path.join(appRootPath, 'lib', 'is-debug'));
+/* jshint ignore:start */
 const mainWindow = require(path.join(appRootPath, 'app', 'scripts', 'components', 'main-window'));
+const updaterService = require(path.join(appRootPath, 'app', 'scripts', 'services', 'updater-service'));
+/* jshint ignore:end */
 
-/**
- * Debug Mode
- * @global
- */
-const liveReload = global.liveReload = (process.env.NODE_ENV === 'livereload');
-const devMode = global.devMode = ((process.env.NODE_ENV === 'dev') || liveReload);
 
 /**
  * Squirrel Handler
@@ -70,7 +68,6 @@ if (electronSquirrelStartup) {
  * @listens app#before-quit
  */
 app.on('before-quit', () => {
-    settings.settings.setSync('internal.windowBounds', BrowserWindow.getAllWindows()[0].getBounds());
     app.isQuitting = true;
 });
 
@@ -78,11 +75,8 @@ app.on('before-quit', () => {
  * @listens app#quit
  */
 app.on('quit', () => {
-    // DEBUG
-    logger.log('Settings', 'File', settings.settings.getSettingsFilePath());
-    logger.log('Settings', 'Content', util.inspect(settings.settings.getSync(), {
-        colors: false, depth: null, showProxy: true, showHidden: true
-    }));
+    logger.log('settings', `settingsFilePath: '${settings.settings.getSettingsFilePath()}'`);
+    logger.debug('settings', util.inspect(settings.settings.getSync()));
 });
 
 /**

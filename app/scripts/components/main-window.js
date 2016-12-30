@@ -35,21 +35,17 @@ const electronConnect = require('electron-connect');
 const packageJson = require(path.join(appRootPath, 'package.json'));
 const platformHelper = require(path.join(appRootPath, 'lib', 'platform-helper'));
 const logger = require(path.join(appRootPath, 'lib', 'logger'))({ writeToFile: true });
+const isDebug = require(path.join(appRootPath, 'lib', 'is-debug'));
+const isLivereload = require(path.join(appRootPath, 'lib', 'is-livereload'));
 const settings = require(path.join(appRootPath, 'app', 'scripts', 'configuration', 'settings'));
 
-/**
- * Debug Mode
- * @global
- */
-let devMode;
-let liveReload;
 
 /**
  * App
  * @global
  */
-let appProductName = packageJson.productName || packageJson.name,
-    appUrl = 'file://' + path.join(appRootPath, 'app', 'html', 'main.html');
+let appProductName = packageJson.productName || packageJson.name;
+let appUrl = 'file://' + path.join(appRootPath, 'app', 'html', 'main.html');
 
 /**
  * Paths
@@ -112,6 +108,16 @@ let createMainWindow = () => {
         settings.settings.set('internal.isVisible', false).then(() => {});
     });
 
+    /** @listens mainWindow:move */
+    mainWindow.on('move', () => {
+        settings.settings.setSync('internal.windowBounds', BrowserWindow.getAllWindows()[0].getBounds());
+    });
+
+    /** @listens mainWindow:resize */
+    mainWindow.on('resize', () => {
+        settings.settings.setSync('internal.windowBounds', BrowserWindow.getAllWindows()[0].getBounds());
+    });
+
     // Web Contents
     mainPage = mainWindow.webContents;
 
@@ -133,11 +139,11 @@ let createMainWindow = () => {
         }
 
         // DEBUG
-        if (devMode) {
-            mainPage.openDevTools({ mode: 'undocked' });
+        if (isDebug) {
+            mainPage.webContents.openDevTools({ mode: 'detach' });
         }
-        if (liveReload) {
-            mainPage.openDevTools({ mode: 'undocked' });
+        if (isLivereload) {
+            mainPage.webContents.openDevTools({ mode: 'detach' });
             const electronConnectClient = electronConnect.client;
             electronConnectClient.create();
         }
@@ -152,12 +158,6 @@ let createMainWindow = () => {
     return mainWindow;
 };
 
-
-/** @listens ipcMain:notification-click */
-ipcMain.on('notification-click', (event, options) => {
-    let url = options.url;
-    if (url) { return shell.openExternal(url); }
-});
 
 /** @listens ipcMain:window-minimize */
 ipcMain.on('window-minimize', () => {
@@ -191,8 +191,6 @@ app.on('activate', () => {
  * @listens app#ready
  */
 app.on('ready', () => {
-    devMode = global.devMode;
-    liveReload = global.liveReload;
     createMainWindow();
 });
 

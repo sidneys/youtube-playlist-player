@@ -37,7 +37,7 @@ let appMain = path.join(appRootPath, packageJson.main);
 
 
 /**
- * Main
+ * Init
  */
 childProcess.spawn(electron, [ appMain ], {
     stdio: 'inherit'

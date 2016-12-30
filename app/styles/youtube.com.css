@@ -1445,6 +1445,14 @@ html, html * {
     background-color: rgb(28, 29, 34) !important;
 }
 
+#masthead-positioner-height-offset {
+    padding-top: 72px !important;
+}
+
+#appbar-guide-menu {
+    padding-top: 20px !important;
+}
+
 a.pl-video-title-link:hover {
     text-decoration: none !important;
 }

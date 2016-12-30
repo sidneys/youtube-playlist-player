@@ -70,7 +70,7 @@
 
         <!-- Webview (Playlist)-->
         <webview id="webview-playlist"
-                 preload="../scripts/playlist.js"
+                 preload="../scripts/renderer/playlist.js"
                  src="http://blank.org"
                  class="hide"
                  autosize="on"
@@ -82,7 +82,7 @@
 
         <!-- Webview (Player)-->
         <webview id="webview-player"
-                 preload="../scripts/player.js"
+                 preload="../scripts/renderer/player.js"
                  src="http://blank.org"
                  autosize="on"
                  partition="persist:app"
@@ -98,7 +98,7 @@
     <script src="../photon/photon.js"></script>
 
     <!-- Scripts -->
-    <script src="../scripts/webview.js"></script>
+    <script src="../scripts/renderer/webview.js"></script>
 
 </body>
 </html>
