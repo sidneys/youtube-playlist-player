@@ -1,7 +1,7 @@
-# YT Playlist Pro [![Beta](https://img.shields.io/badge/status-beta-blue.svg?style=flat)]() [![travis](http://img.shields.io/travis/sidneys/yt-playlist-pro.svg?style=flat)](http://travis-ci.org/sidneys/yt-playlist-pro) [![appveyor](https://ci.appveyor.com/api/projects/status/d69sb6iav7tnrldq?svg=true)](https://ci.appveyor.com/project/sidneys/yt-playlist-pro) [![npm](https://img.shields.io/npm/v/yt-playlist-pro.svg?style=flat)](https://npmjs.com/package/yt-playlist-pro) [![dependencies](https://img.shields.io/david/sidneys/yt-playlist-pro.svg?style=flat-square)](https://npmjs.com/package/yt-playlist-pro) [![devDependencies](https://img.shields.io/david/dev/sidneys/yt-playlist-pro.svg?style=flat-square)](https://npmjs.com/package/yt-playlist-pro)
+# YouTube Playlist Player [![Beta](https://img.shields.io/badge/status-beta-blue.svg?style=flat)]() [![travis](http://img.shields.io/travis/sidneys/youtube-playlist-player.svg?style=flat)](http://travis-ci.org/sidneys/youtube-playlist-player) [![appveyor](https://ci.appveyor.com/api/projects/status/d69sb6iav7tnrldq?svg=true)](https://ci.appveyor.com/project/sidneys/youtube-playlist-player) [![npm](https://img.shields.io/npm/v/youtube-playlist-player.svg?style=flat)](https://npmjs.com/package/youtube-playlist-player) [![dependencies](https://img.shields.io/david/sidneys/youtube-playlist-player.svg?style=flat-square)](https://npmjs.com/package/youtube-playlist-player) [![devDependencies](https://img.shields.io/david/dev/sidneys/youtube-playlist-player.svg?style=flat-square)](https://npmjs.com/package/youtube-playlist-player)
 
 <p align="center">
-  <img height="250px" src="https://raw.githubusercontent.com/sidneys/yt-playlist-pro/release/resources/graphics/icon.png"/><br><br>
+  <img height="250px" src="https://raw.githubusercontent.com/sidneys/youtube-playlist-player/release/resources/graphics/icon.png"/><br><br>
   <b>Watch & edit your YouTube playlist on the desktop.</b><br>
   Available for macOS, Windows and Linux.
 </p>
@@ -43,13 +43,13 @@ Filters on-page and in-stream ads.
 
 ### Standard Installation
 
-Download the latest version of YT Playlist Pro on the [Releases](https://github.com/sidneys/yt-playlist-pro/releases) page.
+Download the latest version of YouTube Playlist Player on the [Releases](https://github.com/sidneys/youtube-playlist-player/releases) page.
 
 ### Installation as Commandline Tool
 
 ```bash
-npm install --global yt-playlist-pro		# Installs the node CLI module
-yt-playlist-pro							# Runs it
+npm install --global youtube-playlist-player		# Installs the node CLI module
+youtube-playlist-player							# Runs it
 ```
 
 
@@ -60,8 +60,8 @@ yt-playlist-pro							# Runs it
 Clone the repo and install dependencies.
 
 ```shell
-git clone https://github.com/sidneys/yt-playlist-pro.git yt-playlist-pro
-cd yt-playlist-pro
+git clone https://github.com/sidneys/youtube-playlist-player.git youtube-playlist-player
+cd youtube-playlist-player
 npm install
 ```
 
@@ -122,12 +122,12 @@ sudo apt-get install wine mono fakeroot dpkg
 > Turnkey **build-in-the-cloud** for Windows 10, macOS and Linux.
 
 The process is managed by a custom layer of node scripts and Electron-optimized configuration templates.
-Completed Installation packages are deployed to [GitHub Releases](https://github.com/sidneys/yt-playlist-pro/releases). Builds for all platforms and architectures take about 5 minutes.
+Completed Installation packages are deployed to [GitHub Releases](https://github.com/sidneys/youtube-playlist-player/releases). Builds for all platforms and architectures take about 5 minutes.
 Backed by the open-source-friendly guys at [Travis](http://travis-ci.org/) and AppVeyor](https://ci.appveyor.com/) and running [electron-packager](https://github.com/electron-userland/electron-packager) under the hood.
 
 ### Setup
 
-1.  [Fork](https://github.com/sidneys/yt-playlist-pro/fork) the repo
+1.  [Fork](https://github.com/sidneys/youtube-playlist-player/fork) the repo
 2.  Generate your GitHub [Personal Access Token](https://github.com/settings/tokens) using "repo" as scope. Copy it to the clipboard.
 3.  **macOS + Linux**
      1. Sign in to [Travis](http://travis-ci.org/) using GitHub.
@@ -157,9 +157,9 @@ Backed by the open-source-friendly guys at [Travis](http://travis-ci.org/) and A
 
 ## <a name="contribute"/></a> Contact ![Contributions Wanted](https://img.shields.io/badge/contributions-wanted-red.svg?style=flat)
 
-* [Gitter](http://gitter.im/sidneys/yt-playlist-pro) Developer Chat
-* [Issues](http;//github.com/sidneys/yt-playlist-pro/issues) File, track and discuss features and issues
-* [Wiki](http;//github.com/sidneys/yt-playlist-pro/wiki) Read or contribute to the project Wiki
+* [Gitter](http://gitter.im/sidneys/youtube-playlist-player) Developer Chat
+* [Issues](http;//github.com/sidneys/youtube-playlist-player/issues) File, track and discuss features and issues
+* [Wiki](http;//github.com/sidneys/youtube-playlist-player/wiki) Read or contribute to the project Wiki
 
 
 ## <a name="author"/></a> Author

@@ -20,7 +20,8 @@ const util = require('util');
 const { app, ipcMain } = require('electron');
 
 /**
- * Chrome Commandline Switches
+ * Hardware Acceleration
+ * @global
  */
 if ((os.platform() === 'linux')) {
     app.commandLine.appendSwitch('enable-transparent-visuals');
@@ -56,6 +57,7 @@ const updaterService = require(path.join(appRootPath, 'app', 'scripts', 'service
 
 /**
  * Squirrel Handler
+ * @global
  */
 if (electronSquirrelStartup) {
     (function() {

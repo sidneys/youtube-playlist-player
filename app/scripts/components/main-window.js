@@ -83,6 +83,7 @@ let createMainWindow = () => {
             nodeIntegration: true,
             partition: 'persist:app',
             webaudio: true,
+            webgl: false,
             webSecurity: false
         }
     });
