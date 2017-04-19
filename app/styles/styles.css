@@ -1,4 +1,63 @@
 /* ==========================================================================
+   FONTS
+   ========================================================================== */
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 300;
+	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Segoe UI Light"), local("Ubuntu Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+@font-face {
+	font-family: system;
+	font-style: italic;
+	font-weight: 300;
+	src: local(".SFNSText-LightItalic"), local(".HelveticaNeueDeskInterface-Italic"), local(".LucidaGrandeUI"), local("Segoe UI Light Italic"), local("Ubuntu Light Italic"), local("Roboto-LightItalic"), local("DroidSans"), local("Tahoma");
+}
+
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 400;
+	src: local(".SFNSText-Regular"), local(".HelveticaNeueDeskInterface-Regular"), local(".LucidaGrandeUI"), local("Segoe UI"), local("Ubuntu"), local("Roboto-Regular"), local("DroidSans"), local("Tahoma");
+}
+
+@font-face {
+	font-family: system;
+	font-style: italic;
+	font-weight: 400;
+	src: local(".SFNSText-Italic"), local(".HelveticaNeueDeskInterface-Italic"), local(".LucidaGrandeUI"), local("Segoe UI Italic"), local("Ubuntu Italic"), local("Roboto-Italic"), local("DroidSans"), local("Tahoma");
+}
+
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 500;
+	src: local(".SFNSText-Medium"), local(".HelveticaNeueDeskInterface-MediumP4"), local(".LucidaGrandeUI"), local("Segoe UI Semibold"), local("Ubuntu Medium"), local("Roboto-Medium"), local("DroidSans-Bold"), local("Tahoma Bold");
+}
+
+@font-face {
+	font-family: system;
+	font-style: italic;
+	font-weight: 500;
+	src: local(".SFNSText-MediumItalic"), local(".HelveticaNeueDeskInterface-MediumItalicP4"), local(".LucidaGrandeUI"), local("Segoe UI Semibold Italic"), local("Ubuntu Medium Italic"), local("Roboto-MediumItalic"), local("DroidSans-Bold"), local("Tahoma Bold");
+}
+
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 700;
+	src: local(".SFNSText-Bold"), local(".HelveticaNeueDeskInterface-Bold"), local(".LucidaGrandeUI"), local("Segoe UI Bold"), local("Ubuntu Bold"), local("Roboto-Bold"), local("DroidSans-Bold"), local("Tahoma Bold");
+}
+
+@font-face {
+	font-family: system;
+	font-style: italic;
+	font-weight: 700;
+	src: local(".SFNSText-BoldItalic"), local(".HelveticaNeueDeskInterface-BoldItalic"), local(".LucidaGrandeUI"), local("Segoe UI Bold Italic"), local("Ubuntu Bold Italic"), local("Roboto-BoldItalic"), local("DroidSans-Bold"), local("Tahoma Bold");
+}
+
+/* ==========================================================================
    GLOBAL
    ========================================================================== */
 
@@ -16,7 +75,7 @@ html {
     background-color: rgb(0, 0, 0);
 }
 
-html.floating-window {
+html.window-float {
     pointer-events: none;
     -webkit-filter: opacity(0.4);
     filter: opacity(0.4);
@@ -112,17 +171,30 @@ body {
    ========================================================================== */
 
 #toolbar {
-    margin-top: 16px;
+    margin: 1em 0.2em 0.3em 0.3em;
 }
 
 #toolbar .btn {
-    border: 1px solid transparent;
-    background: rgb(51, 6, 7) none;
+    border: none;
+    background: rgb(22, 3, 53);
+    margin-right: 0.05em;
+    margin-left: 0.05em;
+    padding: 0.6em 1rem;
+    border-radius: 0px;
+}
+#toolbar .btn .icon {
+    width: 1em;
+    height: 1em;
+    font-size: 1.2em;
+}
+
+#toolbar .btn .icon:before {
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 #toolbar .btn, #toolbar .btn * {
-    transition-property: opacity;
-    transition-duration: 500ms;
+    transition-property: all;
+    transition-duration: 300ms;
     transition-timing-function: ease-in-out;
 }
 
@@ -132,8 +204,7 @@ body {
 }
 
 #toolbar .btn, #toolbar .icon {
-    color: rgba(229, 45, 39, 1);
-    transition: color 200ms;
+    color: rgba(211, 209, 214, 0.8)
 }
 
 #toolbar .btn.active, #toolbar .btn.active .icon {
@@ -141,7 +212,20 @@ body {
 }
 
 #toolbar .btn:hover, #toolbar .btn:hover .icon {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
+}
+
+#toolbar .btn-group {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+}
+
+#toolbar .btn-group:first-child {
+    margin-left: 0;
+}
+
+#toolbar .btn-group:nth-last-child(-n+2) {
+    margin-right: 0;
 }
 
 /* ==========================================================================
@@ -150,14 +234,10 @@ body {
 
 #header {
     z-index: 1337000;
-    background: rgba(179, 18, 23, 0.5) linear-gradient(to bottom, rgba(229, 45, 39, 0.2) 0, rgba(179, 18, 23, 0.4) 100%);
-    /*backdrop-filter: blur(5px);*/
-    /*-webkit-backdrop-filter: blur(5px);*/
+    background: linear-gradient(to bottom, rgba(90, 20, 200, 0.6) 30%, rgba(90, 20, 200, 0.4) 70%, rgba(90, 20, 200, 0.4) 100%);
+    backdrop-filter: blur(0.5em);
     border-bottom: 1px solid rgba(60, 20, 20, 0.2);
-
     transition-property: opacity;
-    transition-delay: 100ms;
-    transition-duration: 300ms;
     transition-timing-function: ease-in-out;
 
     opacity: 0;
@@ -165,10 +245,36 @@ body {
 
 #header.show {
     opacity: 1;
+    transition-delay: 10ms;
+    transition-duration: 250ms;
+}
+
+#header.hide {
+    opacity: 0;
+    backdrop-filter: none;
+    transition-delay: 1000ms;
+    transition-duration: 1000ms;
 }
 
 #header * {
     z-index: 1337000;
+}
+
+#header h1 {
+    font-family: system !important;
+    font-weight: 300;
+    font-size: 1.2em;
+    margin: 0.5em 0 0.8em 0;
+    height: 1.25em;
+    line-height: 1.25em;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#header h1 .emphasis {
+    font-weight: 500;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 1);
 }
 
 /* ==========================================================================
@@ -188,13 +294,17 @@ body {
     align-items: center;
 
     transition: display 500ms, opacity 500ms ease-in-out;
-    display: none;
-    opacity: 0;
+    display: flex;
+    opacity: 1;
 }
 
 #input.show, #input.show * {
-    display: flex;
     opacity: 1;
+}
+
+#input.hide, #input.hide * {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #input-button {
@@ -331,10 +441,10 @@ body {
     pointer-events: auto;
 }
 
-/* spinner__statustext
+/* spinner__text
    ========================================================================== */
 
-#spinner__statustext {
+#spinner__text {
     font-family: 'Roboto', sans-serif;
     font-weight: 200;
     color: white;

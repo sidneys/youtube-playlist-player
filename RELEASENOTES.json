@@ -1,0 +1,20 @@
+{
+    "1.2.5": {
+        "🍾 features": [
+            "External docked playlist window",
+            "User interface overhaul",
+            "Remote control pane",
+            "YouTube TV volume control",
+            "Ad blocker"
+        ],
+        "📒 documentation": [
+          "Augments installation image asset"
+        ],
+        "👷 internals": [
+            "Request filter module",
+            "Complete refactor",
+            "Upgrades Electron to v1.6.7",
+            "Upgrades dependencies"
+        ]
+    }
+}

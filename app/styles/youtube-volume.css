@@ -1,0 +1,52 @@
+/* ##########################################################################
+
+   YouTube TV volume control
+   ########################################################################## */
+
+#volume-container {
+    display: block;
+    position: absolute;
+    top: 63%;
+    right: 8%;
+    margin-top: -2.2em;
+    height: 2em;
+
+}
+
+.button-volume {
+    height: 2em;
+    background-color: #000;
+    opacity: .7;
+    display: inline-block;
+    border-left: 0.1em solid rgba(0, 0, 0, .5);
+    border-right: 0.1em solid rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, .5);
+}
+
+.button-volume.icon {
+    display: inline-block;
+    margin: 0 0 0 0.2em;
+    border: 0 none;
+    width: 1em;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'youtube-icons', fantasy;
+    speak: none;
+    background-color: rgba(0, 0, 0, .1);
+    font-size: 2em;
+    height: 2em;
+    overflow: hidden;
+    line-height: 1.1em;
+
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, .5);
+}
+
+.button-volume.current {
+    background-color: white;
+}
+
+.button-volume:hover {
+    opacity: 1;
+}

@@ -1,7 +1,7 @@
 {
     "browser": true,
     "esnext": true,
-    "bitwise": true,
+    "bitwise": false,
     "camelcase": false,
     "curly": true,
     "eqeqeq": true,
@@ -19,6 +19,7 @@
     "node": true,
     "globals": {
         "Audio": false,
+        "EventTarget": true,
         "global": false,
         "Notification": true
     }

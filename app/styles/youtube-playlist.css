@@ -1,0 +1,20 @@
+/* ##########################################################################
+
+   YouTube Playlist overrides
+   ########################################################################## */
+
+.branded-page-v2-top-row {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.branded-page-v2-top-row * {
+    background: transparent !important;
+}
+
+.branded-page-v2-col-container {
+    background: rgba(0, 0, 0, 0.35) !important;
+}
+
+.branded-page-v2-col-container * {
+    background: transparent !important;
+}

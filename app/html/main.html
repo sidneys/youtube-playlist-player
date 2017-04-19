@@ -7,98 +7,96 @@
 </head>
 <body id="body">
 
-    <!-- Window -->
-    <div class="window" id="window">
+<!-- Window -->
+<div class="window" id="window">
 
-        <!-- Header -->
-        <header class="toolbar toolbar-header" id="header">
+    <!-- Header -->
+    <header class="toolbar toolbar-header" id="header">
 
-            <!-- Title -->
-            <h1 class="title" id="title"></h1>
+        <!-- Title -->
+        <h1 class="title" id="title">
+            <span class="emphasis">YouTube</span> Playlist Player
+        </h1>
 
-            <!-- Toolbar -->
-            <div class="toolbar-actions" id="toolbar">
+        <!-- Toolbar -->
+        <div class="toolbar-actions" id="toolbar">
 
-                <!-- Left -->
-                <div class="btn-group pull-left">
-                    <button class="btn btn-default" id="button-video">
-                        <span class="icon icon-video"></span>
-                    </button>
-                    <button class="btn btn-default" id="button-monitor">
-                        <span class="icon icon-monitor"></span>
-                    </button>
-                </div>
-                <!-- /Left -->
-
-                <!-- Right -->
-                <div class="btn-group pull-right">
-                    <button class="btn btn-default" id="button-reload">
-                        <span class="icon icon-arrows-ccw"></span>
-                    </button>
-                </div>
-                <div class="btn-group pull-right">
-                    <button class="btn btn-default" id="button-home">
-                        <span class="icon icon-home"></span>
-                    </button>
-                    <button class="btn btn-default" id="button-left">
-                        <span class="icon icon-left-dir"></span>
-                    </button>
-                    <button class="btn btn-default" id="button-right">
-                        <span class="icon icon-right-dir"></span>
-                    </button>
-                    <button class="btn btn-default" id="button-playlist">
-                        <span class="icon icon-list"></span>
-                    </button>
-                </div>
-                <!-- /Right -->
+            <!-- Left -->
+            <div class="btn-group pull-left">
+                <button class="btn btn-default" id="button-video">
+                    <span class="icon icon-video"></span>
+                </button>
+                <button class="btn btn-default" id="button-monitor">
+                    <span class="icon icon-monitor"></span>
+                </button>
             </div>
-        </header>
-        <!-- /Header -->
+            <div class="btn-group pull-left">
+                <button class="btn btn-default" id="button-volume-down">
+                    <span class="icon icon-minus-squared"></span>
+                </button>
+                <button class="btn btn-default" id="button-volume-up">
+                    <span class="icon icon-plus-squared"></span>
+                </button>
+            </div>
+            <!-- /Left -->
 
-        <div id="spinner">
-            <div id="spinner__statustext">Connecting...</div>
+            <!-- Right -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default" id="button-reload">
+                    <span class="icon icon-arrows-ccw"></span>
+                </button>
+            </div>
+            <div class="btn-group pull-right">
+                <button class="btn btn-default" id="button-home">
+                    <span class="icon icon-home"></span>
+                </button>
+                <button class="btn btn-default" id="button-left">
+                    <span class="icon icon-left-dir"></span>
+                </button>
+                <button class="btn btn-default" id="button-right">
+                    <span class="icon icon-right-dir"></span>
+                </button>
+                <button class="btn btn-default" id="button-playlist">
+                    <span class="icon icon-list"></span>
+                </button>
+            </div>
+            <!-- /Right -->
         </div>
+    </header>
+    <!-- /Header -->
 
-        <!-- Input -->
-        <div id="input">
-            <input id="input-field"
-                   type="text"
-                   placeholder="YouTube Playlist URL">
-            <span id="input-button" class="icon icon-play"></span>
-        </div>
-        <!-- /Input -->
-
-        <!-- Webview (Playlist)-->
-        <webview id="webview-playlist"
-                 preload="../scripts/renderer/playlist.js"
-                 src="http://blank.org"
-                 class="hide"
-                 autosize="on"
-                 partition="persist:app"
-                 disablewebsecurity="on"
-                 allowpopups="on">
-        </webview>
-        <!-- /Webview (Playlist)-->
-
-        <!-- Webview (Player)-->
-        <webview id="webview-player"
-                 preload="../scripts/renderer/player.js"
-                 src="http://blank.org"
-                 autosize="on"
-                 partition="persist:app"
-                 disablewebsecurity="on"
-                 allowpopups="on">
-        </webview>
-        <!-- /Webview (Player) -->
-
+    <div id="spinner">
+        <div id="spinner__text">Connecting...</div>
     </div>
-    <!-- /Window -->
 
-    <!-- Scripts (Third Party) -->
-    <script src="../photon/photon.js"></script>
+    <!-- Input -->
+    <div id="input">
+        <input id="input-field"
+               type="text"
+               placeholder="YouTube Playlist URL">
+        <span id="input-button" class="icon icon-play"></span>
+    </div>
+    <!-- /Input -->
 
-    <!-- Scripts -->
-    <script src="../scripts/renderer/webview.js"></script>
+    <!-- Webview (Player)-->
+    <webview id="webview-player"
+             preload="../scripts/renderer/webview/player.js"
+             src="about://blank"
+             autosize="on"
+             partition="persist:player"
+             disablewebsecurity="on"
+             allowpopups="on">
+    </webview>
+    <!-- /Webview (Player) -->
+
+</div>
+<!-- /Window -->
+
+<!-- Scripts (Third Party) -->
+<script src="../photon/photon.js"></script>
+
+<!-- Scripts -->
+<script src="../scripts/main/components/webview.js"></script>
 
 </body>
 </html>

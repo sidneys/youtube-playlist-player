@@ -1,0 +1,110 @@
+/* ##########################################################################
+
+   YouTube Player overrides
+   ########################################################################## */
+
+.yt-ui-menu-item,
+.yt-ui-menu-item,
+.yt-ui-menu-content,
+#page-container,
+body > #body-container,
+body,
+.yt-card,
+#comment-section-renderer,
+.comment-renderer-footer,
+.sprite-like-dislike,
+.yt-uix-hovercard-card-border,
+textarea.yt-uix-form-input-textarea.description-textarea,
+select.yt-uix-form-input-select-element.country-selector-select,
+span.yt-uix-form-input-select.country-selector {
+    background-color: transparent !important;
+}
+
+.ad-div,
+.masthead-ad-control {
+    display: none !important;
+}
+
+html, html * {
+    box-shadow: none !important;
+}
+
+.ytp-chrome-top, .ytp-playlist-menu {
+    top: 84px !important;
+}
+
+.ytp-playlist-menu * {
+    -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+#player .ytp-title {
+    text-align: center !important;
+    text-shadow: none !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-weight: 100 !important;
+    font-size: 145% !important;
+}
+
+#player .ytp-video-menu-item-title {
+    font-size: 100% !important;
+}
+
+#player .ytp-video-menu-item-thumbnail {
+    background-color: black !important;
+}
+
+#player .ytp-gradient-bottom {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 5%, rgba(0, 0, 0, 1) 45%) !important;
+}
+
+#player .ytp-gradient-top {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0.6) 100%) !important;
+    padding-bottom: 5px !important;
+}
+
+#player .ytp-chrome-top {
+    background-color: rgba(0, 0, 0, 0.9);
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 12px !important;
+}
+
+#player .ytp-autohide .ytp-chrome-top {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+#masthead-positioner {
+    padding-top: 84px !important;
+    background-color: rgb(28, 29, 34) !important;
+}
+
+#masthead-positioner-height-offset {
+    padding-top: 84px !important;
+}
+
+#appbar-guide-menu {
+    padding-top: 20px !important;
+}
+
+a.pl-video-title-link:hover {
+    text-decoration: none !important;
+}
+
+.yt-uix-tile, .pl-video-title-link {
+    cursor: default !important;
+}
+
+.branded-page-v2-secondary-col {
+    display: none !important;
+}
+
+#leanback .player-meta {
+    padding-top: 84px !important;
+}
+
+.branded-page-v2-top-row, .branded-page-v2-top-row * {
+    background: rgba(0, 0, 0, 0.85) !important;
+}
+.branded-page-v2-col-container, .branded-page-v2-col-container * {
+    background: rgba(0, 0, 0, 0.35) !important;
+}
